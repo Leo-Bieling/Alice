@@ -33,6 +33,7 @@
     <ClInclude Include="src\alice\utilities.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\userSrc\honduras\sketch_honduras_slope_traversal.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_empty.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_mesh_coloring.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_polytopal_test.cpp" />

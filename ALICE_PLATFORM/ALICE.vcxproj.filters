@@ -50,5 +50,8 @@
     <ClCompile Include="src\userSrc\sketch_zSpace_empty.cpp">
       <Filter>sketches\sketch_empty</Filter>
     </ClCompile>
+    <ClCompile Include="src\userSrc\honduras\sketch_honduras_slope_traversal.cpp">
+      <Filter>sketches</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
