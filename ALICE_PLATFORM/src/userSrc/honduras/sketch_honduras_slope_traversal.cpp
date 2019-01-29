@@ -18,12 +18,17 @@ using namespace std;
 ////////////////////////////////////////////////////////////////////////// GLOBAL VARIABLES ----------------------------------------------------
 ////// --- MODEL OBJECTS ----------------------------------------------------
 zMesh terrain;
-zBufferObject buffer_obj;
-vector<zVector> face_centers;
+vector<zVector> faceCenters;
+
+vector<zVector> seeds;
+vector<zVector> polyPts;
+double rotation;
+int numSteps;
+double distSteps;
 
 ////// --- GUI OBJECTS ----------------------------------------------------
 bool smooth = false;
-bool face_normals = false;
+bool faceNormals = false;
 
 ////////////////////////////////////////////////////////////////////////// MAIN PROGRAM : MVC DESIGN PATTERN  ----------------------------------------------------
 ////// ---------------------------------------------------- MODEL  ----------------------------------------------------
@@ -36,17 +41,22 @@ void setup()
 
 	// import mesh
 	fromOBJ(terrain, "data/turtlingBayPatch.obj");
+	//triangulate	(terrain);
+	getCenters(terrain, zFaceData, faceCenters);
 	
-	// create buffer
-	buffer_obj = zBufferObject(1000000);
 
-	// send initial mesh to buffer
-	buffer_obj.appendMesh(terrain);
+	// get seeds
+	seeds.push_back(faceCenters[10000]);
+
+
+	// put seeds as first point in polyPts
+	polyPts.push_back(seeds[0]);
+
 
 	// initialize buttonGroup
 	B = *new ButtonGroup();
 	B.addButton(&smooth, "smooth");
-	B.addButton(&face_normals, "face_normals");
+	B.addButton(&faceNormals, "show face normals");
 
 	////////////////////////////////////////////////////////////////////////// Sliders
 
@@ -76,16 +86,9 @@ void update(int value)
 
 		// flip the bool back to false
 		smooth = !smooth;
-
-		// clear buffer for new mesh
-		buffer_obj.clearBufferForRewrite();
-
-		// append new mesh to buffer
-		buffer_obj.appendMesh(terrain);
 	}
 
-	// compute face centers for displaying the face normals
-	if (face_normals) getCenters(terrain, zFaceData, face_centers);
+
 }
 
 ////// ---------------------------------------------------- VIEW  ----------------------------------------------------
@@ -94,12 +97,18 @@ void draw()
 	backGround(0.75);
 	drawGrid(20.0);
 
-	// draw mesh from the buffer
-	drawLinesFromBuffer(buffer_obj, false);
-	drawQuadsFromBuffer(buffer_obj, true);
+	// draw mesh 
+	drawMesh(terrain, false, true, true);
 
 	// draw face normals
-	if (face_normals) drawMesh_FaceNormals(terrain, face_centers, 2.0);
+	if (faceNormals) drawMesh_FaceNormals(terrain, faceCenters, 2.0);
+
+	// draw seed points
+	for (int i = 0; i < seeds.size(); i++)
+	{
+		drawPoint(seeds[i], zColor(1, 0, (1 / 255 * 100), 1), 50);
+	}
+
 
 	// draw buttons
 	B.draw();
@@ -109,6 +118,7 @@ void draw()
 ////// ---------------------------------------------------- CONTROLLER  ----------------------------------------------------
 void keyPress(unsigned char k, int xm, int ym)
 {
+
 }
 
 void mousePress(int b, int state, int x, int y)
