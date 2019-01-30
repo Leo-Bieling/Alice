@@ -68,18 +68,20 @@ zBufferObject bufferObj;
 vector<zVector> faceCenters;
 vector<int> seeds;
 vector<zGraph> rainflowGraphs;
-vector<zVector> positions;
+vector<zVector> seedPos;
+vector<zVector> seedPosTrans;
+vector<zVector> intersectionPts;
 
 //double rotation;
 int maxNumSteps = 50;
 //double distSteps;
 
-int testFaceId0 = 10750;
-int testFaceId1 = 10900;
-int testFaceId2 = 10800;
-int testFaceId3 = 10850;
-int testFaceId4 = 10700;
-int testFaceId5 = 10820;
+//int testFaceId0 = 10750;
+//int testFaceId1 = 10900;
+//int testFaceId2 = 10800;
+//int testFaceId3 = 10850;
+//int testFaceId4 = 10700;
+//int testFaceId5 = 10820;
 
 
 ////// --- GUI OBJECTS ----------------------------------------------------
@@ -87,12 +89,6 @@ bool faceNormals = false;
 bool showExistRoads = true;
 bool showExistBuildings = true;
 bool showSiteBoundary = false;
-
-//triangular mesh
-//once calculate the intial face
-//line_PlaneIntersection()
-//pointInTriangle()
-// then get all neighboring faces and calculate it only with them when moving
 
 ////////////////////////////////////////////////////////////////////////// MAIN PROGRAM : MVC DESIGN PATTERN  ----------------------------------------------------
 ////// ---------------------------------------------------- MODEL  ----------------------------------------------------
@@ -108,9 +104,6 @@ void setup()
 	fromOBJ(terrain, "data/turtlingBayPatch_terrain_tri.obj");
 	getCenters(terrain, zFaceData, faceCenters);
 
-	//import seed points
-	fromTXT(positions, "data/turtlingBayPatch_seedPts.txt");
-
 	// color water and land
 	for (int i = 0; i < terrain.vertexColors.size(); i++)
 	{
@@ -118,7 +111,7 @@ void setup()
 		else terrain.vertexColors[i] = zColor(0.5, 0.5, 0.5, 1.0);
 	}
 
-	// import roads and buildings
+	// import roads buildings etc.
 	fromOBJ(existRoads, "data/turtlingBayPatch_streets.obj");
 	setVertexColor(existRoads, zColor(0.0, 0.0, 0.0, 1.0), true);
 	fromOBJ(existBuildings, "data/turtlingBayPatch_buildings.obj");
@@ -130,17 +123,46 @@ void setup()
 	bufferObj = zBufferObject(1000000);
 	bufferObj.appendMesh(terrain);
 
-	// get seeds
-	seeds.push_back(testFaceId0);
-	seeds.push_back(testFaceId1);
-	seeds.push_back(testFaceId2);
-	seeds.push_back(testFaceId3);
-	seeds.push_back(testFaceId4);
-	seeds.push_back(testFaceId5);
+	//// get seeds
+	//seeds.push_back(testFaceId0);
+	//seeds.push_back(testFaceId1);
+	//seeds.push_back(testFaceId2);
+	//seeds.push_back(testFaceId3);
+	//seeds.push_back(testFaceId4);
+	//seeds.push_back(testFaceId5);
 
-	// compute rainflow
-	for (int i = 0; i < seeds.size(); i++)
-		rainflowGraphs.push_back(getRainflowGraph(terrain, seeds[i], faceCenters, maxNumSteps));
+	// import seed points from txt
+	fromTXT(seedPos, "data/turtlingBayPatch_seedPts.txt");
+
+	// transform positions to negative
+	for (int i = 0; i < seedPos.size(); i++)
+		seedPosTrans.push_back(seedPos[i] + zVector(0, 0, -100));
+
+	// get inital insection points
+	for (int i = 0; i < seedPos.size(); i++)
+	{
+		for (int j = 0; j < terrain.faceNormals.size(); j++)
+		{
+			zVector intersectionPt;
+			bool crit1 = line_PlaneIntersection(seedPos[i], seedPosTrans[i], terrain.faceNormals[j], faceCenters[j], intersectionPt);
+			
+			vector<int> vertexIds;
+			terrain.getVertices(j, zFaceData, vertexIds);
+			bool crit2 = pointInTriangle(intersectionPt, terrain.vertexPositions[vertexIds[0]], terrain.vertexPositions[vertexIds[1]], terrain.vertexPositions[vertexIds[2]]);
+			
+			if (crit1 && crit2)
+				intersectionPts.push_back(intersectionPt);
+		}
+	}
+
+			// get connected faces through vertices
+			// move intial point with crossproduct of 0,0,1 and fnormal
+			// project point again
+			// calculate only with neighbouring faces
+
+	//// compute rainflow
+	//for (int i = 0; i < seeds.size(); i++)
+	//	rainflowGraphs.push_back(getRainflowGraph(terrain, seeds[i], faceCenters, maxNumSteps));
 
 	// initialize buttonGroup
 	B = *new ButtonGroup(vec(75, 20, 0));
@@ -177,17 +199,28 @@ void draw()
 	if (faceNormals) 
 		drawMesh_FaceNormals(terrain, faceCenters, 2.0);
 
-	// draw seed points
-	for (int i = 0; i < seeds.size(); i++)
-		drawPoint(faceCenters[seeds[i]], zColor(0, 0.5, 0, 1), 10);
+	//// draw seed points
+	//for (int i = 0; i < seeds.size(); i++)
+	//	drawPoint(faceCenters[seeds[i]], zColor(0, 0.5, 0, 1), 10);
+
+	//// draw gaphs
+	//for (int i = 0; i < rainflowGraphs.size(); i++)
+	//	drawGraph(rainflowGraphs[i], true, true);
+
 
 	// draw seed points
-	for (int i = 0; i < positions.size(); i++)
-		drawPoint(positions[i], zColor(1, 0, 0, 1), 10);
-	
-	// draw gaphs
-	for (int i = 0; i < rainflowGraphs.size(); i++)
-		drawGraph(rainflowGraphs[i], true, true);
+	for (int i = 0; i < seedPos.size(); i++)
+	{
+		drawPoint(seedPos[i], zColor(1, 0, 0, 1), 5);
+		drawPoint(seedPosTrans[i], zColor(1, 0, 0, 1), 5);
+		drawLine(seedPos[i], seedPosTrans[i]);
+	}
+
+	// draw intersection points
+	for (int i = 0; i < intersectionPts.size(); i++)
+	{
+		drawPoint(intersectionPts[i], zColor(1, 0, 0, 1), 10);
+	}
 }
 
 ////// ---------------------------------------------------- CONTROLLER  ----------------------------------------------------
