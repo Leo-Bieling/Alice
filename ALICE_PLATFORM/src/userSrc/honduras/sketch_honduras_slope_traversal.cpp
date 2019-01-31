@@ -58,6 +58,16 @@ zGraph getRainflowGraph(zMesh _mesh, int _id, vector<zVector> _faceCenters, int 
 	return zGraph(graphPositions, graphEdgeConnections);
 }
 
+zVector crossProduct(zVector vect_A, zVector vect_B)
+
+{
+	zVector product;
+	product.x = vect_A.y * vect_B.z - vect_A.z * vect_B.y;
+	product.y = vect_A.x * vect_B.z - vect_A.z * vect_B.x;
+	product.z = vect_A.x * vect_B.y - vect_A.y * vect_B.x;
+	return product;
+}
+
 ////////////////////////////////////////////////////////////////////////// GLOBAL VARIABLES ----------------------------------------------------
 ////// --- MODEL OBJECTS ----------------------------------------------------
 zMesh terrain;
@@ -72,9 +82,12 @@ vector<zVector> seedPos;
 vector<zVector> seedPosTrans;
 vector<zVector> intersectionPts;
 
-//double rotation;
+vector<zVector> tmpNewPoint; // temprary just to check if it the new point works
+
+
+double rotation = 0.0;
 int maxNumSteps = 50;
-//double distSteps;
+double distSteps = 0.5;
 
 //int testFaceId0 = 10750;
 //int testFaceId1 = 10900;
@@ -139,6 +152,8 @@ void setup()
 		seedPosTrans.push_back(seedPos[i] + zVector(0, 0, -100));
 
 	// get inital insection points
+
+	vector<int> intersectionFaceIds;
 	for (int i = 0; i < seedPos.size(); i++)
 	{
 		for (int j = 0; j < terrain.faceNormals.size(); j++)
@@ -151,14 +166,19 @@ void setup()
 			bool crit2 = pointInTriangle(intersectionPt, terrain.vertexPositions[vertexIds[0]], terrain.vertexPositions[vertexIds[1]], terrain.vertexPositions[vertexIds[2]]);
 			
 			if (crit1 && crit2)
+			{
 				intersectionPts.push_back(intersectionPt);
+				intersectionFaceIds.push_back(j);
+			}
 		}
-	}
 
-			// get connected faces through vertices
-			// move intial point with crossproduct of 0,0,1 and fnormal
-			// project point again
-			// calculate only with neighbouring faces
+
+		zVector direction = crossProduct(terrain.faceNormals[intersectionFaceIds[i]], zVector(0.0, 0.0, 1.0));
+		direction.normalize();
+		direction.rotateAboutAxis(terrain.faceNormals[intersectionFaceIds[i]], rotation);
+		direction *= distSteps;
+		tmpNewPoint.push_back(intersectionPts[i] + direction);
+	}
 
 	//// compute rainflow
 	//for (int i = 0; i < seeds.size(); i++)
@@ -221,6 +241,13 @@ void draw()
 	{
 		drawPoint(intersectionPts[i], zColor(1, 0, 0, 1), 10);
 	}
+
+	// tmp to check if it working
+	for (int i = 0; i < tmpNewPoint.size(); i++)
+	{
+		drawPoint(tmpNewPoint[i], zColor(0, 1, 0, 1), 10);
+	}
+
 }
 
 ////// ---------------------------------------------------- CONTROLLER  ----------------------------------------------------
