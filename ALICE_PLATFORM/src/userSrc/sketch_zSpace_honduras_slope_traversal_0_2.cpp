@@ -151,7 +151,7 @@ void setup()
 	glEnable(GL_POINT_SMOOTH);
 
 	// import mesh
-	fromOBJ(terrain, "data/turtlingBayPatch_terrain_tri.obj");
+	fromOBJ(terrain, "data/roatan_terrain_tri.obj");
 	getCenters(terrain, zFaceData, faceCenters);
 
 	// color water and land
@@ -162,11 +162,11 @@ void setup()
 	}
 
 	// import roads buildings etc.
-	fromOBJ(existRoads, "data/turtlingBayPatch_streets.obj");
+	fromOBJ(existRoads, "data/roatan_streets.obj");
 	setVertexColor(existRoads, zColor(0.0, 0.0, 0.0, 1.0), true);
-	fromOBJ(existBuildings, "data/turtlingBayPatch_buildings.obj");
+	fromOBJ(existBuildings, "data/roatan_buildings.obj");
 	setVertexColor(existBuildings, zColor(0.5, 0.5, 0.5, 1.0), true);
-	fromOBJ(siteBoundary, "data/turtlingBayPatch_siteBoundary.obj");
+	fromOBJ(siteBoundary, "data/roatan_siteBoundary.obj");
 	setVertexColor(siteBoundary, zColor(1, 0.0, (1 / 255 * 100), 1.0), true);
 	
 	// create buffer
@@ -175,7 +175,7 @@ void setup()
 
 
 	// import seed points from txt
-	fromTXT(seedPos, "data/turtlingBayPatch_seedPts.txt");
+	fromTXT(seedPos, "data/roatan_seedPts.txt");
 
 	
 	for (int i = 0; i < seedPos.size(); i++)
