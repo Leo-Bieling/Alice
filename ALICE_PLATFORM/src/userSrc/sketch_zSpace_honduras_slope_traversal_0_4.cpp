@@ -13,7 +13,7 @@
 using namespace zSpace;
 using namespace std;
 
-zGraph getSlopeTraversalGraph(zMesh &_mesh, zField2D<zVector> &_field, int _n_X, zVector &_seedPos, vector<zVector> &_faceCenters, double _rotation, double _stepDist, int _numOfSteps)
+zGraph getSlopeTraversalGraph(zMesh &_mesh, zField2D<zVector> &_field, int _n_X, zVector _minBB, zVector _maxBB, zVector &_seedPos, vector<zVector> &_faceCenters, double _rotation, double _stepDist, int _numOfSteps)
 {
 	int intersectionFaceId;
 	zVector internalSeedPos = _seedPos;
@@ -29,9 +29,12 @@ zGraph getSlopeTraversalGraph(zMesh &_mesh, zField2D<zVector> &_field, int _n_X,
 	int ceMeshId;
 
 
-
 	for (int i = 0; i < _numOfSteps; i++)
 	{
+		// break if outside of mesh
+		if (internalSeedPos.x > _maxBB.x || internalSeedPos.x < _minBB.x) break;
+		if (internalSeedPos.y > _minBB.y || internalSeedPos.y < _maxBB.y) break;
+
 		// match indices
 		id = _field.getIndex(internalSeedPos);
 		_field.getIndices(internalSeedPos, idX, idY);
@@ -42,6 +45,7 @@ zGraph getSlopeTraversalGraph(zMesh &_mesh, zField2D<zVector> &_field, int _n_X,
 		zVector seedPosTransUp = internalSeedPos + zVector(0, 0, 100);
 		zVector seedPosTransDown = internalSeedPos + zVector(0, 0, -100);
 		bool check = line_PlaneIntersection(seedPosTransUp, seedPosTransDown, _mesh.faceNormals[ceMeshId], _faceCenters[ceMeshId], intersectionPt);
+
 		
 		if (check)
 		{
@@ -81,25 +85,25 @@ zBufferObject bufferObj;
 vector<zVector> faceCenters;
 vector<zGraph> slopeTraversalGraph;
 vector<zVector> seedPos;
-zMesh fieldMesh;
 zField2D<zVector> field;
+zVector minBB;
+zVector maxBB;
+zGraphJSON writeJSON;
 int n_X;
 int n_Y;
 
 double rotation = 0.0; //-90.0 = rainflow
-int numOfSteps = 50;
+int numOfSteps = 100;
 double stepDist = 1.0;
-
 
 
 ////// --- GUI OBJECTS ----------------------------------------------------
 bool showTerrainMesh = true;
 bool showFaceNormals = false;
-bool showField = false;
 bool showExistRoads = false;
 bool showExistBuildings = false;
 bool showSiteBoundary = false;
-
+bool exportGraphToJSON = false;
 
 
 ////////////////////////////////////////////////////////////////////////// MAIN PROGRAM : MVC DESIGN PATTERN  ----------------------------------------------------
@@ -128,8 +132,8 @@ void setup()
 		meshX_values.push_back(terrain.vertexPositions[i].x);
 		meshY_values.push_back(terrain.vertexPositions[i].y);
 	}
-	zVector minBB = zVector(zMin(meshX_values), zMax(meshY_values), 0);
-	zVector maxBB = zVector(zMax(meshX_values), zMin(meshY_values), 0);
+	minBB = zVector(zMin(meshX_values), zMax(meshY_values), 0);
+	maxBB = zVector(zMax(meshX_values), zMin(meshY_values), 0);
 
 	//// get step size
 	vector<int> vertexIds;
@@ -150,8 +154,6 @@ void setup()
 
 	//// initialise field
 	field = zField2D<zVector>(minBB, maxBB,  n_X,  n_Y);
-	//// create mesh from field for display
-	from2DFIELD(fieldMesh, field);
 	
 
 	// color water and land
@@ -177,10 +179,10 @@ void setup()
 	B = *new ButtonGroup(vec(75, 20, 0));
 	B.addButton(&showTerrainMesh, "show terrain");
 	B.addButton(&showFaceNormals, "show face normals");
-	B.addButton(&showField, "show field");
 	B.addButton(&showExistRoads, "show exist roads");
 	B.addButton(&showExistBuildings, "show exist buildings");
 	B.addButton(&showSiteBoundary, "show site boundary");
+	B.addButton(&exportGraphToJSON, "export graphs to JSON");
 
 	// initialize sliderGourp
 	S = *new SliderGroup(vec(75, 400, 0));
@@ -195,8 +197,18 @@ void update(int value)
 	slopeTraversalGraph.clear();
 	for (int i = 0; i < seedPos.size(); i++)
 	{
-		slopeTraversalGraph.push_back(getSlopeTraversalGraph(terrain, field, n_X, seedPos[i], faceCenters, rotation, stepDist, numOfSteps));
-		slopeTraversalGraph.push_back(getSlopeTraversalGraph(terrain, field, n_X, seedPos[i], faceCenters, rotation - 180, stepDist, numOfSteps));
+		slopeTraversalGraph.push_back(getSlopeTraversalGraph(terrain, field, n_X, minBB, maxBB, seedPos[i], faceCenters, rotation, stepDist, numOfSteps));
+		slopeTraversalGraph.push_back(getSlopeTraversalGraph(terrain, field, n_X, minBB, maxBB, seedPos[i], faceCenters, rotation - 180, stepDist, numOfSteps));
+	}
+
+	if (exportGraphToJSON)
+	{
+		for (int i = 0; i < slopeTraversalGraph.size(); i++)
+		{
+			json path = "data/roatan_slopeTraversalGraph_" + to_string(i) + ".json";
+			writeJSON.to_json(path, slopeTraversalGraph[i]);
+		}
+		exportGraphToJSON = !exportGraphToJSON;
 	}
 }
 
@@ -204,7 +216,6 @@ void update(int value)
 void draw()
 {
 	backGround(0.75);
-	//drawGrid(20.0);
 
 	// draw from buffer
 	if(showTerrainMesh)
@@ -228,13 +239,11 @@ void draw()
 		drawPoint(seedPos[i], zColor(0, 0.5, 0, 1), 10);
 		drawLine(seedPos[i], seedPos[i] + zVector(0, 0, -50));
 	}
-	
-	if (showField)
-		drawMesh(fieldMesh, false, true, true);
 
 	// draw slope traversal graphs
 	for (int i = 0; i < slopeTraversalGraph.size(); i++)
 		drawGraph(slopeTraversalGraph[i], true, true);
+
 }
 
 ////// ---------------------------------------------------- CONTROLLER  ----------------------------------------------------
