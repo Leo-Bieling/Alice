@@ -62,5 +62,8 @@
     <ClCompile Include="src\userSrc\sketch_zSpace_honduras_slope_traversal_0_4.cpp">
       <Filter>sketches</Filter>
     </ClCompile>
+    <ClCompile Include="src\userSrc\sketch_zSpace_honduras_perlinNoise.cpp">
+      <Filter>sketches</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,4 +1,4 @@
-#define _MAIN_
+//#define _MAIN_
 
 #ifdef _MAIN_
 
@@ -93,7 +93,8 @@ int n_X;
 int n_Y;
 
 double rotation = 0.0; //-90.0 = rainflow
-int numOfSteps = 100;
+double numOfStepsSlider = 100.0;
+int numOfSteps = 0;
 double stepDist = 1.0;
 
 
@@ -187,13 +188,19 @@ void setup()
 	// initialize sliderGourp
 	S = *new SliderGroup(vec(75, 400, 0));
 	S.addSlider(&rotation, "rotation");
-	S.addSlider(&stepDist, "step distance");
 	S.sliders[0].attachToVariable(&rotation, -180, 180);
+	S.addSlider(&stepDist, "step distance");
 	S.sliders[1].attachToVariable(&stepDist, 0.5, 4);
+	S.addSlider(&numOfStepsSlider, "numberOfSteps");
+	S.sliders[2].attachToVariable(&numOfStepsSlider, 0.0, 500.0);
 }
 
 void update(int value)
 {
+	// casting slider double to interger
+	numOfSteps = static_cast<int>(numOfStepsSlider);
+
+	// compute slope traversal graph
 	slopeTraversalGraph.clear();
 	for (int i = 0; i < seedPos.size(); i++)
 	{
@@ -201,13 +208,12 @@ void update(int value)
 		slopeTraversalGraph.push_back(getSlopeTraversalGraph(terrain, field, n_X, minBB, maxBB, seedPos[i], faceCenters, rotation - 180, stepDist, numOfSteps));
 	}
 
+	// export json
 	if (exportGraphToJSON)
 	{
 		for (int i = 0; i < slopeTraversalGraph.size(); i++)
-		{
-			json path = "data/roatan_slopeTraversalGraph_" + to_string(i) + ".json";
-			writeJSON.to_json(path, slopeTraversalGraph[i]);
-		}
+			toJSON(slopeTraversalGraph[i], "data/roatan_slopeTraversalGraph_" + to_string(i) + ".json");
+
 		exportGraphToJSON = !exportGraphToJSON;
 	}
 }
