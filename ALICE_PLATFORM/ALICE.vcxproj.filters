@@ -29,9 +29,6 @@
     <ClCompile Include="src\userSrc\sketch_zSpace_mesh_coloring.cpp">
       <Filter>sketches</Filter>
     </ClCompile>
-    <ClCompile Include="src\userSrc\sketch_zSpace_polytopal_test.cpp">
-      <Filter>sketches</Filter>
-    </ClCompile>
     <ClCompile Include="src\userSrc\sketch_zSpace_sandbox_lb.cpp">
       <Filter>sketches</Filter>
     </ClCompile>
@@ -50,9 +47,6 @@
     <ClCompile Include="src\userSrc\sketch_zSpace_empty.cpp">
       <Filter>sketches\sketch_empty</Filter>
     </ClCompile>
-    <ClCompile Include="src\userSrc\sketch_zSpace_polytopal_test2.cpp">
-      <Filter>sketches</Filter>
-    </ClCompile>
     <ClCompile Include="src\userSrc\sketch_zSpace_honduras_slope_traversal_0_3.cpp">
       <Filter>sketches</Filter>
     </ClCompile>
@@ -63,6 +57,15 @@
       <Filter>sketches</Filter>
     </ClCompile>
     <ClCompile Include="src\userSrc\sketch_zSpace_honduras_perlinNoise.cpp">
+      <Filter>sketches</Filter>
+    </ClCompile>
+    <ClCompile Include="src\userSrc\sketch_zSpace_polytopal_0_1.cpp">
+      <Filter>sketches</Filter>
+    </ClCompile>
+    <ClCompile Include="src\userSrc\sketch_zSpace_polytopal_0_2.cpp">
+      <Filter>sketches</Filter>
+    </ClCompile>
+    <ClCompile Include="src\userSrc\sketch_zSpace_polytopal_0_3.cpp">
       <Filter>sketches</Filter>
     </ClCompile>
   </ItemGroup>

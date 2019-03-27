@@ -39,8 +39,9 @@
     <ClCompile Include="src\userSrc\sketch_zSpace_honduras_slope_traversal_0_3.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_honduras_slope_traversal_0_4.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_mesh_coloring.cpp" />
-    <ClCompile Include="src\userSrc\sketch_zSpace_polytopal_test.cpp" />
-    <ClCompile Include="src\userSrc\sketch_zSpace_polytopal_test2.cpp" />
+    <ClCompile Include="src\userSrc\sketch_zSpace_polytopal_0_1.cpp" />
+    <ClCompile Include="src\userSrc\sketch_zSpace_polytopal_0_2.cpp" />
+    <ClCompile Include="src\userSrc\sketch_zSpace_polytopal_0_3.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_sandbox_lb.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_shortestPath.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_smoothing.cpp" />
