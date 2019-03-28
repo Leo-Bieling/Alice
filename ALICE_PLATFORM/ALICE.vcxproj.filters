@@ -68,5 +68,14 @@
     <ClCompile Include="src\userSrc\sketch_zSpace_polytopal_0_3.cpp">
       <Filter>sketches</Filter>
     </ClCompile>
+    <ClCompile Include="src\userSrc\sketch_zSpace_facadeExtrude_0_1.cpp">
+      <Filter>sketches</Filter>
+    </ClCompile>
+    <ClCompile Include="src\userSrc\sketch_zSpace_facadeExtrude_0_2.cpp">
+      <Filter>sketches</Filter>
+    </ClCompile>
+    <ClCompile Include="src\userSrc\sketch_zSpace_facadeExtrude_0_3.cpp">
+      <Filter>sketches</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
