@@ -77,5 +77,23 @@
     <ClCompile Include="src\userSrc\sketch_zSpace_facadeExtrude_0_3.cpp">
       <Filter>sketches</Filter>
     </ClCompile>
+    <ClCompile Include="src\userSrc\sketch_zSpace_Dual.cpp">
+      <Filter>sketches</Filter>
+    </ClCompile>
+    <ClCompile Include="src\userSrc\sketch_zSpace_facadeExtrude_0_4.cpp">
+      <Filter>sketches</Filter>
+    </ClCompile>
+    <ClCompile Include="src\userSrc\sketch_zSpace_polytopal_0_4.cpp">
+      <Filter>sketches</Filter>
+    </ClCompile>
+    <ClCompile Include="src\userSrc\sketch_zSpace_FDM_Mesh.cpp">
+      <Filter>sketches</Filter>
+    </ClCompile>
+    <ClCompile Include="src\userSrc\sketch_zSpace_TNA_Stairs.cpp">
+      <Filter>sketches</Filter>
+    </ClCompile>
+    <ClCompile Include="src\userSrc\sketch_zSpace_facadeExtrude_0_5.cpp">
+      <Filter>sketches</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

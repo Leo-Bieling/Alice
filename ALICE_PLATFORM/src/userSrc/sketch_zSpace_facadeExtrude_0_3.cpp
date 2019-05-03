@@ -1,9 +1,11 @@
-#define _MAIN_
+
+//#define _MAIN_
 
 #ifdef _MAIN_
 
 #include "main.h"
 
+// zSpace v001
 #include <headers/include/zCore.h>
 #include <headers/include/zData.h>
 #include <headers/include/zDisplay.h>

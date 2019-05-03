@@ -33,10 +33,14 @@
     <ClInclude Include="src\alice\utilities.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\userSrc\sketch_zSpace_Dual.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_empty.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_facadeExtrude_0_1.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_facadeExtrude_0_2.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_facadeExtrude_0_3.cpp" />
+    <ClCompile Include="src\userSrc\sketch_zSpace_facadeExtrude_0_4.cpp" />
+    <ClCompile Include="src\userSrc\sketch_zSpace_facadeExtrude_0_5.cpp" />
+    <ClCompile Include="src\userSrc\sketch_zSpace_FDM_Mesh.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_honduras_perlinNoise.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_honduras_slope_traversal_0_2.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_honduras_slope_traversal_0_3.cpp" />
@@ -45,10 +49,12 @@
     <ClCompile Include="src\userSrc\sketch_zSpace_polytopal_0_1.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_polytopal_0_2.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_polytopal_0_3.cpp" />
+    <ClCompile Include="src\userSrc\sketch_zSpace_polytopal_0_4.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_sandbox_lb.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_shortestPath.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_smoothing.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_testHOnly.cpp" />
+    <ClCompile Include="src\userSrc\sketch_zSpace_TNA_Stairs.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_WalkAnimate.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -231,7 +237,7 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <WholeProgramOptimization>true</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>src/algLib/;src/libGizmo/include;src/gl2ps;src/Eigen;src/polyClipper;src/freeglut;src/alice;src/glew/include;src/;src/userSrc;include;C:\Users\Leo.B\source\repos\zSpace_v001;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src/algLib/;src/libGizmo/include;src/gl2ps;src/Eigen;src/polyClipper;src/freeglut;src/alice;src/glew/include;src/;src/userSrc;include;C:\Users\Leo.B\source\repos\zSpace_v002;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <FloatingPointModel>Fast</FloatingPointModel>
@@ -246,7 +252,7 @@
     <Link>
       <AdditionalDependencies> sqlite3.lib;glew32.lib;ALICE_DLL.lib;ALICE_RobotDll.lib;opengl32.lib;gl2ps.lib;libgizmo.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)EXE\$(ProjectName).exe</OutputFile>
-      <AdditionalLibraryDirectories>src/algLib/;src/libGizmo/lib;x64/Release;src/gl2ps;src/;src/glew/lib;src/alice;src/freeglut;C:\Users\Leo.B\source\repos\zSpace_v001\depends\SQLITE\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>src/algLib/;src/libGizmo/lib;x64/Release;src/gl2ps;src/;src/glew/lib;src/alice;src/freeglut;C:\Users\Leo.B\source\repos\zSpace_v002\depends\SQLITE\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
