@@ -1,4 +1,3 @@
-
 //#define _MAIN_
 
 #ifdef _MAIN_
@@ -61,9 +60,9 @@ bool computeEquilibrium = false;
 bool createPolytopal = false;
 bool closePolytopal = false;
 
-bool drawForceDiagram = false;
+bool drawForceDiagram = true;
 bool drawFormDiagram = true;
-bool drawPolytopal = true;
+bool drawPolytopal = false;
 
 bool exportPolytopal = false;
 bool exportFormGraph = false;
@@ -228,6 +227,15 @@ void draw()
 	B.draw();
 
 	model.draw();
+
+	// draw string
+	setup2d();
+	drawString("Press 'q' to increase smoothness", vec(50, 250, 0));
+	drawString("Press 'a' to decrease smoothness", vec(50, 275, 0));
+	drawString("smooth: " + to_string(subDIVS), vec(50, 300, 0));
+	restore3d();
+
+
 }
 
 ////// ---------------------------------------------------- CONTROLLER  ----------------------------------------------------

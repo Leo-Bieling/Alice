@@ -13,6 +13,7 @@
 #include <headers/app/include/zViewer.h>
 
 // include toolset header
+#include <headers/app/include/Tools/zTsGeometry.h>
 
 using namespace zSpace;
 using namespace std;
@@ -24,9 +25,12 @@ zModel model;
 zObjMesh operateMesh;
 zFnMesh fnOperateMesh;
 
-//string path = "data/hs_comp_facade_family.json";
 
-string path = "C:/Users/Leo.b/Desktop/spatialSlur_heMesh_cube.json";
+string path = "C:/Users/Leo.b/Desktop/test.obj";
+
+// tool set
+zTsRemesh myRemesh;
+
 ////// --- GUI OBJECTS ----------------------------------------------------
 
 
@@ -36,9 +40,9 @@ void setup()
 {
 	model = zModel(10000);
 	fnOperateMesh = zFnMesh(operateMesh);
-	fnOperateMesh.from(path, zJSON);
-	fnOperateMesh.computeFaceColorfromVertexColor();
+	fnOperateMesh.from(path, zOBJ);
 
+	myRemesh = zTsRemesh(operateMesh);
 
 	// append to model for displaying the object
 	model.addObject(operateMesh);
@@ -48,6 +52,7 @@ void setup()
 
 void update(int value)
 {
+
 }
 
 ////// ---------------------------------------------------- VIEW  ----------------------------------------------------
@@ -61,6 +66,8 @@ void draw()
 ////// ---------------------------------------------------- CONTROLLER  ----------------------------------------------------
 void keyPress(unsigned char k, int xm, int ym)
 {
+	if (k == 'q')
+		myRemesh.tangentialRelaxation();
 }
 
 void mousePress(int b, int state, int x, int y)

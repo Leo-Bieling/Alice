@@ -95,5 +95,8 @@
     <ClCompile Include="src\userSrc\sketch_zSpace_facadeExtrude_0_5.cpp">
       <Filter>sketches</Filter>
     </ClCompile>
+    <ClCompile Include="src\userSrc\sketch_zSpace_Laplacian_Eigen.cpp">
+      <Filter>sketches</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
