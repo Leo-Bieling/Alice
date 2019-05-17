@@ -21,15 +21,20 @@ using namespace std;
 
 ////////////////////////////////////////////////////////////////////////// GLOBAL VARIABLES ----------------------------------------------------
 ////// --- MODEL OBJECTS ----------------------------------------------------
-zModel model;
-zObjMesh operateMesh;
+/*Objects*/
+zObjMesh operateMeshObj;
+
+/*Function sets*/
 zFnMesh fnOperateMesh;
+
+/*Tool sets*/
+zTsRemesh myRemesh;
 
 
 string path = "C:/Users/Leo.b/Desktop/test.obj";
 
-// tool set
-zTsRemesh myRemesh;
+////// --- MODEL / DISPLAY SETUP ----------------------------------------------------
+zModel model;
 
 ////// --- GUI OBJECTS ----------------------------------------------------
 
@@ -39,15 +44,16 @@ zTsRemesh myRemesh;
 void setup()
 {
 	model = zModel(10000);
-	fnOperateMesh = zFnMesh(operateMesh);
+	fnOperateMesh = zFnMesh(operateMeshObj);
 	fnOperateMesh.from(path, zOBJ);
 
-	myRemesh = zTsRemesh(operateMesh);
+	myRemesh = zTsRemesh(operateMeshObj);
 
 	// append to model for displaying the object
-	model.addObject(operateMesh);
+	model.addObject(operateMeshObj);
 
-	
+	////// --- GUI SETUP ----------------------------------------------------
+
 }
 
 void update(int value)

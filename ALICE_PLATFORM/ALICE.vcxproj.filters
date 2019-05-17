@@ -95,7 +95,22 @@
     <ClCompile Include="src\userSrc\sketch_zSpace_facadeExtrude_0_5.cpp">
       <Filter>sketches</Filter>
     </ClCompile>
-    <ClCompile Include="src\userSrc\sketch_zSpace_Laplacian_Eigen.cpp">
+    <ClCompile Include="src\userSrc\sketch_zSpace_facadeExtrude_eigen.cpp">
+      <Filter>sketches</Filter>
+    </ClCompile>
+    <ClCompile Include="src\userSrc\sketch_zSpace_laplacian_eigen_0_1.cpp">
+      <Filter>sketches</Filter>
+    </ClCompile>
+    <ClCompile Include="src\userSrc\sketch_zSpace_laplacian_eigen_0_2.cpp">
+      <Filter>sketches</Filter>
+    </ClCompile>
+    <ClCompile Include="src\userSrc\sketch_zSpace_frep_tester.cpp">
+      <Filter>sketches</Filter>
+    </ClCompile>
+    <ClCompile Include="src\userSrc\sketch_zSpace_graph_frep_0_2.cpp">
+      <Filter>sketches</Filter>
+    </ClCompile>
+    <ClCompile Include="src\userSrc\sketch_zSpace_graph_frep_0_1.cpp">
       <Filter>sketches</Filter>
     </ClCompile>
   </ItemGroup>
