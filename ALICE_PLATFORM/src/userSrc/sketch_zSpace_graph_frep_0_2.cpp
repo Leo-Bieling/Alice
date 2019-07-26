@@ -1,5 +1,5 @@
 
-#define _MAIN_
+//#define _MAIN_
 
 #ifdef _MAIN_
 
@@ -36,28 +36,32 @@ zObjGraph contourGraphObj;
 zFnGraph fnGraph;
 zFnMeshField<double> fnField;
 
-/*Tool sets*/
 
+/*Tool sets*/
 
 string path = "data/hk_graph_v2.json";
 
 zVector fieldBB_min = zVector(-120, -75, 0);
 zVector fieldBB_max = zVector(120, 75, 0);
-int fieldResolutionX = 100;
-int fieldResolutionY = 50;
+int fieldResolutionX = 200;
+int fieldResolutionY = 100;
 
 
 vector<double> fieldScalars;
-vector<zColor> vertCol;
 
-vector<int> greenEdgeId;
-vector<int> redEdgeId;
+vector<int> greenEdgeIds;
+vector<int> redEdgeIds;
 
 vector<int> greenVertIds;
-vector<int> greenVertsVal1Id;
+vector<int> greenVal1VertsId;
+
 vector<zVector> unitCentres;
 
+vector<zTransformationMatrix> unitTransfMats;
+vector<zTransform> transMats;
 
+vector<zObjGraph> graphTestObj;
+vector <zFnGraph> fnGraphTest;
 ////// --- GUI OBJECTS ----------------------------------------------------
 double contourThreshold = 0.5;
 
@@ -68,7 +72,6 @@ void setup()
 	// construct graph
 	fnGraph = zFnGraph(graphObj);
 	fnGraph.from(path, zJSON);
-
 
 	// construct field
 	fnField = zFnMeshField<double>(fieldObj);
@@ -83,44 +86,101 @@ void setup()
 	// set field values
 	fnField.setFieldValues(fieldScalars);
 
-
-	// get unit and amentity edge id
+	// get unit and amenity edge id
 	for (int i = 0; i < fnGraph.numEdges(); i++)
 	{
 		// unitId
 		if (fnGraph.getEdgeColor(i) == zColor(0, 1, 0, 1))
-			greenEdgeId.push_back(i);
+			greenEdgeIds.push_back(i);
 		// amenityId
 		if (fnGraph.getEdgeColor(i) == zColor(1, 0, 0, 1))
-			redEdgeId.push_back(i);
+			redEdgeIds.push_back(i);
 	}
 
-	// get valence 1 of green edges
-	for (int i = 0; i < greenEdgeId.size(); i++)
-	{
-		greenVertIds.push_back(fnGraph.getStartVertexIndex(greenEdgeId[i]));
-		greenVertIds.push_back(fnGraph.getEndVertexIndex(greenEdgeId[i]));
+	printf("\n\ngreenEdgeIds count: %i", greenEdgeIds.size());
+	printf("\nredEdgeIds count: %i", redEdgeIds.size());
+
+	// get valence 1 vertices of green edges
+	for (int i = 0; i < greenEdgeIds.size(); i++)
+	{	
+		//// get start and end vertex of each edge
+		greenVertIds.push_back(fnGraph.getStartVertexIndex(greenEdgeIds[i]));
+		greenVertIds.push_back(fnGraph.getEndVertexIndex(greenEdgeIds[i]));
 	}
 
 	for (int i = 0; i < greenVertIds.size(); i++)
-	{
+	{	
 		if (fnGraph.checkVertexValency(greenVertIds[i]))
 		{
-			greenVertsVal1Id.push_back(greenVertIds[i]);
+			greenVal1VertsId.push_back(greenVertIds[i]);
 			unitCentres.push_back(fnGraph.getVertexPosition(greenVertIds[i]));
 		}
 	}
+
+	printf("\nunitCentres count: %i", unitCentres.size());
+
+	// get rotation
+	vector<float> zRotation;
+	for (int i = 0; i < greenVal1VertsId.size(); i++)
+	{
+		vector<int> tmpEdgeIds;
+		fnGraph.getConnectedEdges(greenVal1VertsId[i], zVertexData, tmpEdgeIds);
+
+		//// compute rotation
+		zVector tmp = fnGraph.getEdgeVector(tmpEdgeIds[0]);
+		zRotation.push_back(tmp.angle(zVector(1, 0, 0)));
+
+		tmpEdgeIds.clear();
+
+		//cout << zRotation[i] << endl;
+	}
+
+	
 
 	// get frep box at origin
 
 	// translate to center of unit
 
+
+
+
+	for (int i = 0; i < unitCentres.size(); i++)
+	{
+		graphTestObj.push_back(zObjGraph());
+		fnGraphTest.push_back(zFnGraph(graphTestObj[i]));
+		fnGraphTest[i].from("C:/Users/Leo.b/Desktop/tester.json", zJSON);
+
+		// rotation
+		double3 r = { 0, 0, zRotation[0] };
+		fnGraphTest[i].setRotation(r);
+
+		// translation
+		fnGraphTest[i].setTranslation(unitCentres[0]);
+
+
+
+		//testGraphsObj.push_back(graphTestObj);
+	}
+
+
+
+
 	////// --- MODEL / DISPLAY SETUP ----------------------------------------------------
-	model = zModel(10000);
-	graphObj.setShowElements(true, true);
+	model = zModel(100000);
+
+	for (int i = 0; i < graphTestObj.size(); i++)
+	{
+		graphTestObj[i].setShowElements(true, true);
+		model.addObject(graphTestObj[i]);
+	}
+
+
+	//graphObj.setShowElements(true, true);
 	//model.setShowBufQuads(true, true);
-	model.addObject(graphObj);
-	model.addObject(contourGraphObj);
+
+	//model.addObject(graphObj);
+	//model.addObject(contourGraphObj);
+
 	//model.addObject(fieldObj);
 	//fieldObj.appendToBuffer();
 
@@ -130,7 +190,6 @@ void setup()
 
 	S.addSlider(&contourThreshold, "contour");
 	S.sliders[0].attachToVariable(&contourThreshold, 0.01, 0.99);
-
 }
 
 void update(int value)
@@ -147,8 +206,9 @@ void draw()
 	backGround(0.75);
 	model.draw();
 
-	for each (zVector p in unitCentres)
-		model.displayUtils.drawPoint(p, zColor(0, 0, 1, 1), 10.0);	
+	//for each (zVector p in unitCentres)
+	//	model.displayUtils.drawPoint(p, zColor(0, 0, 1, 1), 10);
+
 }
 
 ////// ---------------------------------------------------- CONTROLLER  ----------------------------------------------------

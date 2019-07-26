@@ -53,13 +53,13 @@ void setup()
 	fnField.setFieldColorDomain(zDomainColor(zColor(0, 1, 1), zColor(180, 1, 1)));
 	
 	// Circle
-	//fnField.getScalars_Circle(scalars, zVector(0, 0, 0), 1.0, 5.0);
+	//fnField.getScalars_Circle(scalars, zVector(0, 0, 0), 1.0);
 
 	// Line
-	//fnField.getScalars_Line(scalars, zVector(-10, 10, 0), zVector(10, -10, 0), 5.0);
+	//fnField.getScalars_Line(scalars, zVector(-10, 10, 0), zVector(10, -10, 0));
 
 	// Square
-	//fnField.getScalars_Square(scalars, zVector(5,5,0), 5.0);
+	//fnField.getScalars_Square(scalars, zVector(5,5,0));
 
 	// Trapezoid
 	fnField.getScalars_Trapezoid(scalars, 2.0, 6.0, 10.0);
@@ -72,7 +72,7 @@ void setup()
 	////// --- MODEL / DISPLAY SETUP ----------------------------------------------------
 	model = zModel(100000);
 	model.setShowBufQuads(true, true);
-	model.setShowBufLines(true);
+	//model.setShowBufLines(true);
 	model.addObject(graphObj);
 	model.addObject(fieldObj);
 	fieldObj.appendToBuffer();
