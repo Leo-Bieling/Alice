@@ -1,5 +1,5 @@
 
-#define _MAIN_
+//#define _MAIN_
 
 #ifdef _MAIN_
 

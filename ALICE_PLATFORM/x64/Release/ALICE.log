@@ -1,8 +1,35 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(391,5): warning MSB8028: The intermediate directory (x64\Release\) contains files shared from another project (ALICE_CUDA.vcxproj).  This can lead to incorrect clean and rebuild behavior.
 cl : Command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
-  sketch_zSpace_graph_to_plan.cpp
-C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(1216,5): warning MSB8012: TargetPath(C:\Users\Leo.b\source\repos\Alice2018_CUDA\ALICE_PLATFORM\x64\Release\ALICE_PLATFORM.exe) does not match the Linker's OutputFile property value (C:\Users\Leo.b\source\repos\Alice2018_CUDA\ALICE_PLATFORM\x64\Release\EXE\ALICE_PLATFORM.exe). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
-LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/LTCG' specification
-  Generating code
-  Finished generating code
-  ALICE.vcxproj -> C:\Users\Leo.b\source\repos\Alice2018_CUDA\ALICE_PLATFORM\x64\Release\ALICE_PLATFORM.exe
+  sketch_zSpace_acadia_ws_sandbox.cpp
+c:\users\leo.b\source\repos\zspace\cpp\source\ztoolsets\geometry\ztsspectral.cpp(21): error C2084: function 'zSpace::zTsSpectral::zTsSpectral(void)' already has a body
+  c:\users\leo.b\source\repos\zspace\cpp\source\ztoolsets\geometry\ztsspectral.cpp(21): note: see previous definition of '{ctor}'
+c:\users\leo.b\source\repos\zspace\cpp\source\ztoolsets\geometry\ztsspectral.cpp(24): error C2084: function 'zSpace::zTsSpectral::zTsSpectral(zSpace::zObjMesh &)' already has a body
+  c:\users\leo.b\source\repos\zspace\cpp\source\ztoolsets\geometry\ztsspectral.cpp(23): note: see previous definition of '{ctor}'
+c:\users\leo.b\source\repos\zspace\cpp\source\ztoolsets\geometry\ztsspectral.cpp(33): error C2084: function 'zSpace::zTsSpectral::~zTsSpectral(void)' already has a body
+  c:\users\leo.b\source\repos\zspace\cpp\source\ztoolsets\geometry\ztsspectral.cpp(33): note: see previous definition of '{dtor}'
+c:\users\leo.b\source\repos\zspace\cpp\source\ztoolsets\geometry\ztsspectral.cpp(38): error C2084: function 'void zSpace::zTsSpectral::createMeshfromFile(std::string,zSpace::zFileTpye)' already has a body
+  c:\users\leo.b\source\repos\zspace\cpp\source\ztoolsets\geometry\ztsspectral.cpp(37): note: see previous definition of 'createMeshfromFile'
+c:\users\leo.b\source\repos\zspace\cpp\source\ztoolsets\geometry\ztsspectral.cpp(47): error C2084: function 'double zSpace::zTsSpectral::computeEigenFunction(double &,bool &)' already has a body
+  c:\users\leo.b\source\repos\zspace\cpp\source\ztoolsets\geometry\ztsspectral.cpp(46): note: see previous definition of 'computeEigenFunction'
+c:\users\leo.b\source\repos\zspace\cpp\source\ztoolsets\geometry\ztsspectral.cpp(129): error C2084: function 'void zSpace::zTsSpectral::computeVertexType(void)' already has a body
+  c:\users\leo.b\source\repos\zspace\cpp\source\ztoolsets\geometry\ztsspectral.cpp(128): note: see previous definition of 'computeVertexType'
+c:\users\leo.b\source\repos\zspace\cpp\source\ztoolsets\geometry\ztsspectral.cpp(211): error C2084: function 'void zSpace::zTsSpectral::setNumEigens(int)' already has a body
+  c:\users\leo.b\source\repos\zspace\cpp\source\ztoolsets\geometry\ztsspectral.cpp(210): note: see previous definition of 'setNumEigens'
+c:\users\leo.b\source\repos\zspace\cpp\source\ztoolsets\geometry\ztsspectral.cpp(218): error C2084: function 'void zSpace::zTsSpectral::setColorDomain(zSpace::zDomainColor &,zSpace::zColorType)' already has a body
+  c:\users\leo.b\source\repos\zspace\cpp\source\ztoolsets\geometry\ztsspectral.cpp(217): note: see previous definition of 'setColorDomain'
+c:\users\leo.b\source\repos\zspace\cpp\source\ztoolsets\geometry\ztsspectral.cpp(224): error C2084: function 'void zSpace::zTsSpectral::setVertexColorFromEigen(bool)' already has a body
+  c:\users\leo.b\source\repos\zspace\cpp\source\ztoolsets\geometry\ztsspectral.cpp(223): note: see previous definition of 'setVertexColorFromEigen'
+c:\users\leo.b\source\repos\zspace\cpp\source\ztoolsets\geometry\ztsspectral.cpp(238): error C2084: function 'int zSpace::zTsSpectral::numEigens(void)' already has a body
+  c:\users\leo.b\source\repos\zspace\cpp\source\ztoolsets\geometry\ztsspectral.cpp(237): note: see previous definition of 'numEigens'
+c:\users\leo.b\source\repos\zspace\cpp\source\ztoolsets\geometry\ztsspectral.cpp(243): error C2084: function 'void zSpace::zTsSpectral::getEigenFunctionValues(std::vector<double,std::allocator<_Ty>> &)' already has a body
+          with
+          [
+              _Ty=double
+          ]
+  c:\users\leo.b\source\repos\zspace\cpp\source\ztoolsets\geometry\ztsspectral.cpp(242): note: see previous definition of 'getEigenFunctionValues'
+c:\users\leo.b\source\repos\zspace\cpp\source\ztoolsets\geometry\ztsspectral.cpp(248): error C2084: function 'double *zSpace::zTsSpectral::getRawEigenFunctionValues(void)' already has a body
+  c:\users\leo.b\source\repos\zspace\cpp\source\ztoolsets\geometry\ztsspectral.cpp(247): note: see previous definition of 'getRawEigenFunctionValues'
+c:\users\leo.b\source\repos\zspace\cpp\source\ztoolsets\geometry\ztsspectral.cpp(255): error C2084: function 'void zSpace::zTsSpectral::computeMinMax_Eigen(int &,zSpace::zDomainDouble &)' already has a body
+  c:\users\leo.b\source\repos\zspace\cpp\source\ztoolsets\geometry\ztsspectral.cpp(254): note: see previous definition of 'computeMinMax_Eigen'
+  Skipping... (no relevant changes detected)
+  sketch_zSpace_empty.cpp

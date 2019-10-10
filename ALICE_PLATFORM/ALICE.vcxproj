@@ -33,6 +33,8 @@
     <ClInclude Include="src\alice\utilities.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\userSrc\sketch_zSpace_acadia_ws_sandbox.cpp" />
+    <ClCompile Include="src\userSrc\sketch_zSpace_colored_graph.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_Dual.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_empty.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_facadeExtrude_0_1.cpp" />
@@ -58,6 +60,7 @@
     <ClCompile Include="src\userSrc\sketch_zSpace_polytopal_0_3.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_polytopal_0_4.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_polytopal_0_5.cpp" />
+    <ClCompile Include="src\userSrc\sketch_zSpace_Robot_NACHI.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_RREF.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_RREF_simple.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_sandbox_lb.cpp" />
@@ -248,7 +251,7 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <WholeProgramOptimization>true</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>src/algLib/;src/libGizmo/include;src/gl2ps;src/Eigen;src/polyClipper;src/freeglut;src/alice;src/glew/include;src/;src/userSrc;include;C:\Users\Leo.b\source\repos\ZSPACE;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src/algLib/;src/libGizmo/include;src/gl2ps;src/Eigen;src/polyClipper;src/freeglut;src/alice;src/glew/include;src/;src/userSrc;include;C:/Users/Leo.b/source/repos/ZSPACE/cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <FloatingPointModel>Fast</FloatingPointModel>
@@ -263,7 +266,7 @@
     <Link>
       <AdditionalDependencies> sqlite3.lib;glew32.lib;ALICE_DLL.lib;ALICE_RobotDll.lib;opengl32.lib;gl2ps.lib;libgizmo.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)EXE\$(ProjectName).exe</OutputFile>
-      <AdditionalLibraryDirectories>src/algLib/;src/libGizmo/lib;x64/Release;src/gl2ps;src/;src/glew/lib;src/alice;src/freeglut;C:\Users\Leo.b\source\repos\ZSPACE\depends\SQLITE\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>src/algLib/;src/libGizmo/lib;x64/Release;src/gl2ps;src/;src/glew/lib;src/alice;src/freeglut;C:/Users/Leo.b/source/repos/ZSPACE/cpp/depends/SQLITE/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

@@ -128,5 +128,14 @@
     <ClCompile Include="src\userSrc\sketch_zSpace_graph_to_plan.cpp">
       <Filter>sketches</Filter>
     </ClCompile>
+    <ClCompile Include="src\userSrc\sketch_zSpace_colored_graph.cpp">
+      <Filter>sketches</Filter>
+    </ClCompile>
+    <ClCompile Include="src\userSrc\sketch_zSpace_Robot_NACHI.cpp">
+      <Filter>sketches</Filter>
+    </ClCompile>
+    <ClCompile Include="src\userSrc\sketch_zSpace_acadia_ws_sandbox.cpp">
+      <Filter>sketches</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

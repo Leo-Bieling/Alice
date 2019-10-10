@@ -6,14 +6,14 @@
 // alice header
 #include "main.h"
 
-// zSpace v002
+// zSpace v003
 // zSpace header
-#include <headers/app/include/zObjects.h>
-#include <headers/app/include/zFnSets.h>
-#include <headers/app/include/zViewer.h>
+#include <headers/zApp/include/zObjects.h>
+#include <headers/zApp/include/zFnSets.h>
+#include <headers/zApp/include/zViewer.h>
 
 // include toolset header
-#include <headers/app/include/Tools/zTsGeometry.h>
+//#include <headers/zApp/include/zTsGeometry.h>
 
 using namespace zSpace;
 using namespace std;
@@ -28,10 +28,9 @@ zObjMesh operateMeshObj;
 zFnMesh fnOperateMesh;
 
 /*Tool sets*/
-zTsRemesh myRemesh;
 
 
-string path = "C:/Users/Leo.b/Desktop/test.obj";
+string path = "C:/Users/Leo.b/Desktop/tester.json";
 
 ////// --- MODEL / DISPLAY SETUP ----------------------------------------------------
 zModel model;
@@ -45,9 +44,7 @@ void setup()
 {
 	model = zModel(10000);
 	fnOperateMesh = zFnMesh(operateMeshObj);
-	fnOperateMesh.from(path, zOBJ);
-
-	myRemesh = zTsRemesh(operateMeshObj);
+	fnOperateMesh.from(path, zJSON);
 
 	// append to model for displaying the object
 	model.addObject(operateMeshObj);
@@ -64,7 +61,7 @@ void update(int value)
 ////// ---------------------------------------------------- VIEW  ----------------------------------------------------
 void draw()
 {
-	//drawGrid(20);
+	drawGrid(20);
 	backGround(0.75);
 	model.draw();
 }
@@ -72,8 +69,7 @@ void draw()
 ////// ---------------------------------------------------- CONTROLLER  ----------------------------------------------------
 void keyPress(unsigned char k, int xm, int ym)
 {
-	if (k == 'q')
-		myRemesh.tangentialRelaxation();
+
 }
 
 void mousePress(int b, int state, int x, int y)
