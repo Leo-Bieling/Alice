@@ -29,8 +29,9 @@ zFnMesh fnOperateMesh;
 
 /*Tool sets*/
 
+/*General variables*/
+string path = "C:/Users/Leo.b/Desktop/open_cube.json";
 
-string path = "C:/Users/Leo.b/Desktop/tester.json";
 
 ////// --- MODEL / DISPLAY SETUP ----------------------------------------------------
 zModel model;
@@ -50,7 +51,6 @@ void setup()
 	model.addObject(operateMeshObj);
 
 	////// --- GUI SETUP ----------------------------------------------------
-
 }
 
 void update(int value)

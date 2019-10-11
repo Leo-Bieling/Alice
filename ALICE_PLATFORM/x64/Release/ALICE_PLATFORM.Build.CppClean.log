@@ -1,7 +1,5 @@
 c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\vc141.pdb
 c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\vc141.idb
-c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zspace_graph_frep_0_2.obj
-c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zspace_honduras_perlinnoise.obj
 c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zspace_honduras_slope_traversal_0_2.obj
 c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zspace_honduras_slope_traversal_0_3.obj
 c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zspace_honduras_slope_traversal_0_4.obj
@@ -13,6 +11,8 @@ c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zsp
 c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zspace_polytopal_0_3.obj
 c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zspace_polytopal_0_4.obj
 c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zspace_polytopal_0_5.obj
+c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zspace_rref.obj
+c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zspace_rref_simple.obj
 c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zspace_sandbox_lb.obj
 c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zspace_shortestpath.obj
 c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zspace_smoothing.obj
@@ -20,8 +20,8 @@ c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zsp
 c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zspace_tna_stairs.obj
 c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zspace_transformation.obj
 c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zspace_walkanimate.obj
+c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zspace_colored_graph.obj
 c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zspace_dual.obj
-c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zspace_empty.obj
 c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zspace_facadeextrude_0_1.obj
 c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zspace_facadeextrude_0_2.obj
 c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zspace_facadeextrude_0_3.obj
@@ -30,11 +30,13 @@ c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zsp
 c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zspace_facadeextrude_eigen.obj
 c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zspace_fdm_mesh.obj
 c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zspace_frep_tester.obj
-c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zspace_graph_frep_0_1.obj
-c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zspace_rref.obj
-c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zspace_rref_simple.obj
 c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zspace_graph_to_plan.obj
-c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zspace_colored_graph.obj
+c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zspace_graph_frep_0_1.obj
+c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zspace_graph_frep_0_2.obj
+c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zspace_honduras_perlinnoise.obj
+c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zspace_empty.obj
+c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zspace_robot_nachi.obj
+c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\sketch_zspace_acadia_ws_sandbox.obj
 c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\exe\alice_platform.exe
 c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\alice_platform.pdb
 c:\users\leo.b\source\repos\alice2018_cuda\alice_platform\x64\release\alice_platform.tlog\cl.command.1.tlog
