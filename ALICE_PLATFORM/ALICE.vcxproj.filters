@@ -137,5 +137,8 @@
     <ClCompile Include="src\userSrc\sketch_zSpace_acadia_ws_sandbox.cpp">
       <Filter>sketches</Filter>
     </ClCompile>
+    <ClCompile Include="src\userSrc\sketch_zSpace_acadia_ws_dataset.cpp">
+      <Filter>sketches</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

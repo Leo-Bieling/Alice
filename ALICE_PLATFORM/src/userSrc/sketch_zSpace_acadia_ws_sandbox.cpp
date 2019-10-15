@@ -18,45 +18,6 @@
 using namespace zSpace;
 using namespace std;
 
-////////////////////////////////////////////////////////////////////////// Custom Method
-
-void checkVertexSupport(zObjMesh& _objMesh, double angle_threshold, vector<int>& support)
-{
-	support.assign(_objMesh.mesh.n_v, -1);
-
-	zFnMesh fnMesh(_objMesh);
-
-	zVector* positions = fnMesh.getRawVertexPositions();
-
-	for (zItMeshVertex vIt(_objMesh); !vIt.end(); vIt++)
-	{
-		zIntArray cVerts;
-		vIt.getConnectedVertices(cVerts);
-
-		int lowestId;
-		double val = 10e10;
-		for (int i = 0; i < cVerts.size(); i++)
-		{
-			double zVal = positions[cVerts[i]].z;
-
-			if (zVal < val)
-			{
-				lowestId = cVerts[i];
-				val = zVal;
-			}
-		}
-
-		zVector lowestV = positions[lowestId];
-
-		zVector vec = vIt.getPosition() - lowestV;
-		zVector unitz = zVector(0, 0, 1);
-
-		double ang = vec.angle(unitz);
-
-		(ang > (180 - angle_threshold)) ? support[vIt.getId()] = 2 : support[vIt.getId()] = 1;
-
-	}
-}
 
 ////////////////////////////////////////////////////////////////////////// GLOBAL VARIABLES ----------------------------------------------------
 ////// --- MODEL OBJECTS ----------------------------------------------------
@@ -67,14 +28,14 @@ zObjMesh meshObj;
 zFnMesh fnMesh;
 
 /*Tool sets*/
-zTsMesh2Pix meshImage;
+zTsMesh2Pix mesh2Pix;
 zUtilsCore coreUtils;
 
 /*General variables*/
 string meshPath = "C:/Users/Leo.b/Desktop/funnel.json";
-string imgOutputPath = "C:/Users/Leo.b/Desktop";
+string imgOutputPath = "C:/Users/Leo.b/Desktop/tester";
 
-int trainingSetSize = 25;
+int trainingSetSize = 40.00;
 double translationRange = 0.4;
 
 vector<int> support;
@@ -89,8 +50,8 @@ bool meshToPix = false;
 bool computeSupport = true;
 
 
-double background = 0.75;
-double angle = 90.00;
+double background = 0.2;
+double angle = 45.00;
 
 ////////////////////////////////////////////////////////////////////////// MAIN PROGRAM : MVC DESIGN PATTERN  ----------------------------------------------------
 ////// ---------------------------------------------------- MODEL  ----------------------------------------------------
@@ -127,51 +88,28 @@ void setup()
 	fnMesh = zFnMesh(meshObj);
 	fnMesh.from(meshPath, zJSON);
 	
-	fnMesh.setFaceColor(zColor(0.75, 0.75, 0.75, 1), true);
-
-
-	//// translate vertices to create training set
-	//zPointArray vertPos;
-	//fnMesh.getVertexPositions(vertPos);
-
-	//for (int i = 0; i < vertPos.size(); i++)
-	//	vertPos[i] += zVector(coreUtils.randomNumber_double(translationRange * -1, translationRange), coreUtils.randomNumber_double(translationRange * -1, translationRange), coreUtils.randomNumber_double(translationRange * -1, translationRange));
-
-	//fnMesh.setVertexPositions(vertPos);
-
-	//fnMesh.smoothMesh(1);
-
-
 	// append to model for displaying the object
 	model.addObject(meshObj);
 
 	// set display element booleans
 	meshObj.setShowElements(true, true, true);
-
-	////// --- GUI SETUP ----------------------------------------------------
-
 }
 
 void update(int value)
 {
 	if (computeSupport)
-	{
-		checkVertexSupport(meshObj, angle, support);
-
-		int id = 0;
-		model.displayUtils.bufferObj.updateVertexColors(fnMesh.getRawVertexColors(), fnMesh.numVertices(), id);
-
-		//run = !run;
-	}
+		mesh2Pix.checkVertexSupport(meshObj, angle, support);
+	
 
 	if (meshToPix)
 	{
-		// create BMPs
-		meshImage = zTsMesh2Pix(meshObj);
-		meshImage.toBMP(imgOutputPath, zVertexVertex);
-		meshImage.toBMP(imgOutputPath, support);
+		mesh2Pix = zTsMesh2Pix(meshObj);
 
-		cout << "\nmeshToPix: success!";
+		string vertexDataFilePath = imgOutputPath + "/meshImage_zVertexVertexData.bmp";
+		string connectivityFilePath = imgOutputPath + "/meshImage_zVertexVertex.bmp";
+
+		mesh2Pix.toBMP(zVertexVertex, connectivityFilePath);
+		mesh2Pix.toVertexDataBMP(support, vertexDataFilePath);
 
 		meshToPix = !meshToPix;
 	}

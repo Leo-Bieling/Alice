@@ -33,6 +33,7 @@
     <ClInclude Include="src\alice\utilities.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\userSrc\sketch_zSpace_acadia_ws_dataset.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_acadia_ws_sandbox.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_colored_graph.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_Dual.cpp" />
