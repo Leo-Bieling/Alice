@@ -32,8 +32,8 @@ zTsMesh2Pix mesh2Pix;
 zUtilsCore coreUtils;
 
 /*General variables*/
-string meshPath = "C:/Users/Leo.b/Desktop/funnel.json";
-string imgOutputPath = "C:/Users/Leo.b/Desktop/tester";
+string meshPath = "C:/Users/Leo.b/Desktop/open_cube_1.json";
+string imgOutputPath = "C:/Users/Leo.b/Desktop/tester/";
 
 int trainingSetSize = 40.00;
 double translationRange = 0.4;
@@ -97,19 +97,12 @@ void setup()
 
 void update(int value)
 {
-	if (computeSupport)
-		mesh2Pix.checkVertexSupport(meshObj, angle, support);
-	
 
 	if (meshToPix)
 	{
-		mesh2Pix = zTsMesh2Pix(meshObj);
+		mesh2Pix = zTsMesh2Pix(meshObj, 20);
 
-		string vertexDataFilePath = imgOutputPath + "/meshImage_zVertexVertexData.bmp";
-		string connectivityFilePath = imgOutputPath + "/meshImage_zVertexVertex.bmp";
-
-		mesh2Pix.toBMP(zVertexVertex, connectivityFilePath);
-		mesh2Pix.toVertexDataBMP(support, vertexDataFilePath);
+		mesh2Pix.printSupport2Pix(imgOutputPath, angle);
 
 		meshToPix = !meshToPix;
 	}
@@ -125,7 +118,7 @@ void draw()
 	S.draw();
 	B.draw();
 
-	if (display)
+	/*if (display)
 	{
 		for (zItMeshVertex vIt(meshObj); !vIt.end(); vIt++)
 		{
@@ -148,7 +141,7 @@ void draw()
 				glDisable(GL_LINE_STIPPLE);
 			}
 		}
-	}
+	}*/
 }
 
 ////// ---------------------------------------------------- CONTROLLER  ----------------------------------------------------
