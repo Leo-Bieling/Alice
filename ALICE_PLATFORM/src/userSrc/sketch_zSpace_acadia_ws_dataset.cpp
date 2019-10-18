@@ -1,5 +1,5 @@
 
-//#define _MAIN_
+#define _MAIN_
 
 #ifdef _MAIN_
 
@@ -20,49 +20,6 @@
 using namespace zSpace;
 using namespace std;
 
-////////////////////////////////////////////////////////////////////////// Custom Method
-
-void checkVertexSupport(zObjMesh& _objMesh, double angle_threshold, vector<int>& support)
-{
-	support.assign(_objMesh.mesh.n_v, -1);
-
-	zFnMesh fnMesh(_objMesh);
-
-	zVector* positions = fnMesh.getRawVertexPositions();
-
-	for (zItMeshVertex vIt(_objMesh); !vIt.end(); vIt++)
-	{
-
-		zIntArray cVerts;
-		vIt.getConnectedVertices(cVerts);
-
-		int lowestId;
-		double val = 10e10;
-		for (int i = 0; i < cVerts.size(); i++)
-		{
-			double zVal = positions[cVerts[i]].z;
-
-			if (zVal < val)
-			{
-				lowestId = cVerts[i];
-				val = zVal;
-			}
-		}
-
-		zVector lowestV = positions[lowestId];
-
-		zVector vec = vIt.getPosition() - lowestV;
-		zVector unitz = zVector(0, 0, 1);
-
-		double ang = vec.angle(unitz);
-
-		if (vIt.getPosition().z > 0)
-			(ang > (angle_threshold)) ? support[vIt.getId()] = 2 : support[vIt.getId()] = 1;
-		else
-			support[vIt.getId()] = 1;
-	}
-}
-
 ////////////////////////////////////////////////////////////////////////// GLOBAL VARIABLES ----------------------------------------------------
 ////// --- MODEL OBJECTS ----------------------------------------------------
 /*Objects*/
@@ -72,19 +29,17 @@ zObjMesh meshObj;
 zFnMesh fnMesh;
 
 /*Tool sets*/
-zTsMesh2Pix meshImage;
-zUtilsCore coreUtils;
+zTsMesh2Pix mesh2Pix;
+
+////// --- MODEL / DISPLAY SETUP ----------------------------------------------------
+zModel model;
 
 /*General variables*/
-string meshPath = "C:/Users/Leo.b/Desktop/open_cube.json";
-//string imgOutputPath = "C:/Users/Leo.b/Desktop/dataset";
-string imgOutputPath = "//zaha-hadid.com/Data/Projects/1453_CODE/1453___research/res_leo/research/workshops/ACADIA_19/dataSet_v0";
+string meshPath = "C:/Users/Leo.b/Desktop/cube.json";
+string imgOutputPath = "C:/Users/Leo.b/.spyder-py3/data_sets/dataSet_v13";
 
-vector<int> support;
-int trainingSetSize = 100;
-double angle = 10.00;
+double angle = 45.00;
 float translationRange = 0.4;
-
 
 ////// --- GUI OBJECTS ----------------------------------------------------
 double background = 0.2;
@@ -93,45 +48,19 @@ double background = 0.2;
 ////// ---------------------------------------------------- MODEL  ----------------------------------------------------
 void setup()
 {
+	model = zModel(10000);
+
 	fnMesh = zFnMesh(meshObj);
+	fnMesh.from(meshPath, zJSON);
 
-	auto t1 = std::chrono::high_resolution_clock::now();
+	mesh2Pix = zTsMesh2Pix(meshObj, 256);
+	//mesh2Pix.generatePrintSupport2Pix(imgOutputPath, "mesh2Pix", angle, true, 500, true, zVector(translationRange, translationRange, 0));
 
-	for (int i = 0; i < trainingSetSize; i++)
-	{
-		fnMesh.from(meshPath, zJSON);
+	mesh2Pix.predictPrintSupport2Pix("C:/Users/Leo.b/Desktop/test/test/", "m2p_test_0", false);
 
-		// translate vertices
-		zPointArray vertPos;
-		fnMesh.getVertexPositions(vertPos);
+	meshObj.setShowElements(true, true, false);
+	model.addObject(meshObj);
 
-		for (int i = 0; i < vertPos.size(); i++)
-			vertPos[i] += zVector(coreUtils.randomNumber_double(translationRange * -1, translationRange), coreUtils.randomNumber_double(translationRange * -1, translationRange), 0);
-
-		fnMesh.setVertexPositions(vertPos);
-
-		// smooth
-		//fnMesh.smoothMesh(1);
-
-		// check suuport
-		checkVertexSupport(meshObj, angle, support);
-		
-		// create BMPs
-		meshImage = zTsMesh2Pix(meshObj);
-		meshImage.toBMP(imgOutputPath, zVertexVertex, i);
-		meshImage.toBMP(support, imgOutputPath, i);
-
-		// write obj
-		string objOutput = imgOutputPath + "/mesh_" + to_string(i) + ".obj";
-		fnMesh.to(objOutput, zOBJ);
-	}
-	
-	auto t2 = std::chrono::high_resolution_clock::now();
-
-	auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count();
-
-
-	std::cout << "\n" << duration / 1000 << " seconds";
 }
 
 void update(int value)
@@ -141,8 +70,9 @@ void update(int value)
 ////// ---------------------------------------------------- VIEW  ----------------------------------------------------
 void draw()
 {
-	drawGrid(50);
+	drawGrid(20);
 	backGround(background);
+	model.draw();
 }
 
 ////// ---------------------------------------------------- CONTROLLER  ----------------------------------------------------

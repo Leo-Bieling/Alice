@@ -1,5 +1,5 @@
 
-#define _MAIN_
+//#define _MAIN_
 
 #ifdef _MAIN_
 
@@ -100,11 +100,18 @@ void update(int value)
 
 	if (meshToPix)
 	{
-		mesh2Pix = zTsMesh2Pix(meshObj, 20);
+		auto t1 = std::chrono::high_resolution_clock::now();
 
-		mesh2Pix.printSupport2Pix(imgOutputPath, angle);
+
+		mesh2Pix = zTsMesh2Pix(meshObj, 64);
+
+		mesh2Pix.printSupport2Pix(imgOutputPath, "test", angle);
 
 		meshToPix = !meshToPix;
+
+		auto t2 = std::chrono::high_resolution_clock::now();
+		auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count();
+		std::cout << "\n" << duration / 1000 << " seconds";
 	}
 }
 

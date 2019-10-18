@@ -27,12 +27,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\ZSPACE\cpp\depends\lodePNG\lodepng.h" />
     <ClInclude Include="src\alice\Controller.h" />
     <ClInclude Include="src\alice\MODEL.h" />
     <ClInclude Include="src\alice\object.h" />
     <ClInclude Include="src\alice\utilities.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\ZSPACE\cpp\depends\lodePNG\lodepng.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_acadia_ws_dataset.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_acadia_ws_sandbox.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_colored_graph.cpp" />

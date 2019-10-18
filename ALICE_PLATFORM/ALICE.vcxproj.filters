@@ -13,6 +13,9 @@
     <ClInclude Include="src\alice\object.h">
       <Filter>MVC</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\ZSPACE\cpp\depends\lodePNG\lodepng.h">
+      <Filter>depends</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="MVC">
@@ -23,6 +26,9 @@
     </Filter>
     <Filter Include="sketches\sketch_empty">
       <UniqueIdentifier>{d2babdba-8290-4b48-a107-8a34e7617721}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="depends">
+      <UniqueIdentifier>{a45ffa2a-58cf-4fbb-93ca-f4923b68459f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -139,6 +145,9 @@
     </ClCompile>
     <ClCompile Include="src\userSrc\sketch_zSpace_acadia_ws_dataset.cpp">
       <Filter>sketches</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ZSPACE\cpp\depends\lodePNG\lodepng.cpp">
+      <Filter>depends</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
