@@ -27,6 +27,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\alglibinternal.h" />
+    <ClInclude Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\alglibmisc.h" />
+    <ClInclude Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\ap.h" />
+    <ClInclude Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\dataanalysis.h" />
+    <ClInclude Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\diffequations.h" />
+    <ClInclude Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\fasttransforms.h" />
+    <ClInclude Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\integration.h" />
+    <ClInclude Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\interpolation.h" />
+    <ClInclude Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\linalg.h" />
+    <ClInclude Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\optimization.h" />
+    <ClInclude Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\solvers.h" />
+    <ClInclude Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\specialfunctions.h" />
+    <ClInclude Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\statistics.h" />
+    <ClInclude Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\stdafx.h" />
     <ClInclude Include="..\..\ZSPACE\cpp\depends\lodePNG\lodepng.h" />
     <ClInclude Include="src\alice\Controller.h" />
     <ClInclude Include="src\alice\MODEL.h" />
@@ -34,9 +48,23 @@
     <ClInclude Include="src\alice\utilities.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\alglibinternal.cpp" />
+    <ClCompile Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\alglibmisc.cpp" />
+    <ClCompile Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\ap.cpp" />
+    <ClCompile Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\dataanalysis.cpp" />
+    <ClCompile Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\diffequations.cpp" />
+    <ClCompile Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\fasttransforms.cpp" />
+    <ClCompile Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\integration.cpp" />
+    <ClCompile Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\interpolation.cpp" />
+    <ClCompile Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\linalg.cpp" />
+    <ClCompile Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\optimization.cpp" />
+    <ClCompile Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\solvers.cpp" />
+    <ClCompile Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\specialfunctions.cpp" />
+    <ClCompile Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\statistics.cpp" />
     <ClCompile Include="..\..\ZSPACE\cpp\depends\lodePNG\lodepng.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_acadia_ws_dataset.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_acadia_ws_sandbox.cpp" />
+    <ClCompile Include="src\userSrc\sketch_zSpace_catmul_clark.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_colored_graph.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_Dual.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_empty.cpp" />
@@ -51,6 +79,10 @@
     <ClCompile Include="src\userSrc\sketch_zSpace_graph_to_plan.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_graph_frep_0_1.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_graph_frep_0_2.cpp" />
+    <ClCompile Include="src\userSrc\sketch_zSpace_graph_to_polyhedra_0_1.cpp" />
+    <ClCompile Include="src\userSrc\sketch_zSpace_graph_to_polyhedra_0_2.cpp" />
+    <ClCompile Include="src\userSrc\sketch_zSpace_graph_to_polyhedra_0_3.cpp" />
+    <ClCompile Include="src\userSrc\sketch_zSpace_graph_to_polyhedra_0_4.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_honduras_perlinNoise.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_honduras_slope_traversal_0_2.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_honduras_slope_traversal_0_3.cpp" />
@@ -66,7 +98,7 @@
     <ClCompile Include="src\userSrc\sketch_zSpace_Robot_NACHI.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_RREF.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_RREF_simple.cpp" />
-    <ClCompile Include="src\userSrc\sketch_zSpace_sandbox_lb.cpp" />
+    <ClCompile Include="src\userSrc\sketch_zSpace_sandbox.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_shortestPath.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_smoothing.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_testHOnly.cpp" />
@@ -103,6 +135,7 @@
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
+    <UseIntelMKL>Parallel</UseIntelMKL>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release_igl|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -265,6 +298,7 @@
       <MinimalRebuild>true</MinimalRebuild>
       <ExceptionHandling>Sync</ExceptionHandling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
+      <PreprocessorDefinitions>NOTUSING_CLR;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalDependencies> sqlite3.lib;glew32.lib;ALICE_DLL.lib;ALICE_RobotDll.lib;opengl32.lib;gl2ps.lib;libgizmo.lib;%(AdditionalDependencies)</AdditionalDependencies>

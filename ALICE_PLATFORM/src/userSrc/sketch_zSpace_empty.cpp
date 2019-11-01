@@ -12,31 +12,27 @@
 #include <headers/zApp/include/zFnSets.h>
 #include <headers/zApp/include/zViewer.h>
 
-// include toolset header
+// zSpace toolset header
 //#include <headers/zApp/include/zTsGeometry.h>
 
 using namespace zSpace;
 using namespace std;
 
-
-////////////////////////////////////////////////////////////////////////// GLOBAL VARIABLES ----------------------------------------------------
-////// --- MODEL OBJECTS ----------------------------------------------------
-/*Objects*/
+/*objects*/
 zObjMesh operateMeshObj;
 
-/*Function sets*/
+/*function sets*/
 zFnMesh fnOperateMesh;
 
-/*Tool sets*/
+/*tool sets*/
 
-/*General variables*/
-string path = "C:/Users/Leo.b/Desktop/open_cube.json";
-
-
-////// --- MODEL / DISPLAY SETUP ----------------------------------------------------
+/*model setup*/
 zModel model;
 
-////// --- GUI OBJECTS ----------------------------------------------------
+/*general variables*/
+double background = 0.2;
+string path = "C:/Users/Leo.b/Desktop/open_cube.json";
+bool drawMesh = true;
 
 
 ////////////////////////////////////////////////////////////////////////// MAIN PROGRAM : MVC DESIGN PATTERN  ----------------------------------------------------
@@ -47,29 +43,33 @@ void setup()
 	fnOperateMesh = zFnMesh(operateMeshObj);
 	fnOperateMesh.from(path, zJSON);
 
-	// append to model for displaying the object
+	fnOperateMesh.smoothMesh(2);
+
 	model.addObject(operateMeshObj);
 
-	////// --- GUI SETUP ----------------------------------------------------
+	/*gui setup*/
+	B = *new ButtonGroup(Alice::vec(50, 450, 0));
+
+	B.addButton(&drawMesh, "drawMesh");
+	B.buttons[0].attachToVariable(&drawMesh);
 }
 
 void update(int value)
 {
-
+	operateMeshObj.setShowObject(drawMesh);
 }
 
 ////// ---------------------------------------------------- VIEW  ----------------------------------------------------
 void draw()
 {
-	drawGrid(20);
-	backGround(0.75);
+	drawGrid(50);
+	backGround(background);
 	model.draw();
 }
 
 ////// ---------------------------------------------------- CONTROLLER  ----------------------------------------------------
 void keyPress(unsigned char k, int xm, int ym)
 {
-
 }
 
 void mousePress(int b, int state, int x, int y)

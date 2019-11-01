@@ -16,6 +16,48 @@
     <ClInclude Include="..\..\ZSPACE\cpp\depends\lodePNG\lodepng.h">
       <Filter>depends</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\alglibinternal.h">
+      <Filter>depends\alglib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\alglibmisc.h">
+      <Filter>depends\alglib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\ap.h">
+      <Filter>depends\alglib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\dataanalysis.h">
+      <Filter>depends\alglib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\diffequations.h">
+      <Filter>depends\alglib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\fasttransforms.h">
+      <Filter>depends\alglib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\integration.h">
+      <Filter>depends\alglib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\interpolation.h">
+      <Filter>depends\alglib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\linalg.h">
+      <Filter>depends\alglib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\optimization.h">
+      <Filter>depends\alglib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\solvers.h">
+      <Filter>depends\alglib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\specialfunctions.h">
+      <Filter>depends\alglib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\statistics.h">
+      <Filter>depends\alglib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\stdafx.h">
+      <Filter>depends\alglib</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="MVC">
@@ -30,12 +72,12 @@
     <Filter Include="depends">
       <UniqueIdentifier>{a45ffa2a-58cf-4fbb-93ca-f4923b68459f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="depends\alglib">
+      <UniqueIdentifier>{bbbb67b5-8553-4d9d-8424-afea3b4dd5fe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\userSrc\sketch_zSpace_mesh_coloring.cpp">
-      <Filter>sketches</Filter>
-    </ClCompile>
-    <ClCompile Include="src\userSrc\sketch_zSpace_sandbox_lb.cpp">
       <Filter>sketches</Filter>
     </ClCompile>
     <ClCompile Include="src\userSrc\sketch_zSpace_shortestPath.cpp">
@@ -148,6 +190,63 @@
     </ClCompile>
     <ClCompile Include="..\..\ZSPACE\cpp\depends\lodePNG\lodepng.cpp">
       <Filter>depends</Filter>
+    </ClCompile>
+    <ClCompile Include="src\userSrc\sketch_zSpace_catmul_clark.cpp">
+      <Filter>sketches</Filter>
+    </ClCompile>
+    <ClCompile Include="src\userSrc\sketch_zSpace_graph_to_polyhedra_0_1.cpp">
+      <Filter>sketches</Filter>
+    </ClCompile>
+    <ClCompile Include="src\userSrc\sketch_zSpace_graph_to_polyhedra_0_2.cpp">
+      <Filter>sketches</Filter>
+    </ClCompile>
+    <ClCompile Include="src\userSrc\sketch_zSpace_sandbox.cpp">
+      <Filter>sketches</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\alglibinternal.cpp">
+      <Filter>depends\alglib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\alglibmisc.cpp">
+      <Filter>depends\alglib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\ap.cpp">
+      <Filter>depends\alglib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\dataanalysis.cpp">
+      <Filter>depends\alglib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\diffequations.cpp">
+      <Filter>depends\alglib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\fasttransforms.cpp">
+      <Filter>depends\alglib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\integration.cpp">
+      <Filter>depends\alglib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\interpolation.cpp">
+      <Filter>depends\alglib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\linalg.cpp">
+      <Filter>depends\alglib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\optimization.cpp">
+      <Filter>depends\alglib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\solvers.cpp">
+      <Filter>depends\alglib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\specialfunctions.cpp">
+      <Filter>depends\alglib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\statistics.cpp">
+      <Filter>depends\alglib</Filter>
+    </ClCompile>
+    <ClCompile Include="src\userSrc\sketch_zSpace_graph_to_polyhedra_0_3.cpp">
+      <Filter>sketches</Filter>
+    </ClCompile>
+    <ClCompile Include="src\userSrc\sketch_zSpace_graph_to_polyhedra_0_4.cpp">
+      <Filter>sketches</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
