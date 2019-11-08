@@ -12,7 +12,6 @@
 #include <headers/zApp/include/zViewer.h>
 
 // include toolset header
-//#include <headers/zApp/include/zTsStatics.h>
 #include <headers/zToolsets/geometry/zTsGraphPolyhedra.h>
 
 using namespace zSpace;
@@ -28,39 +27,38 @@ zFnGraph fnOperateGraph;
 zTsGraphPolyhedra myGraphPolyhedra;
 
 /*General variables*/
-//string path = "C:/Users/Leo.b/Desktop/graph/multi_node_graph.txt";
-//string path = "C:/Users/Leo.b/Desktop/graph/simple_node_graph.txt";
-string path = "C:/Users/Leo.b/Desktop/graph/complex.txt";
+string path = "C:/Users/Leo.b/Desktop/graph/baseline_tester.txt";
+//string path = "C:/Users/Leo.b/Desktop/graph/newTest_5.txt";
+//string path = "C:/Users/Leo.b/Desktop/graph/test.json"; // fix JSON
 
-zModel model;
+zUtilsDisplay display;
 
 bool drawGraph = true;
 bool drawConHull = false;
-bool drawGraphMesh = true;
+bool drawGraphMesh = false;
+bool drawDual = true;
 
 double background = 0.2;
+
+int snap = 0;
+bool increaseSnap;
+bool decreaseSnap;
+bool drawDualMeshFaces = true;
+
 
 
 ////////////////////////////////////////////////////////////////////////// MAIN PROGRAM : MVC DESIGN PATTERN  ----------------------------------------------------
 ////// ---------------------------------------------------- MODEL  ----------------------------------------------------
 void setup()
 {
-	model = zModel(10000);
-
 	// load graph
 	fnOperateGraph = zFnGraph(operateGraphObj);
+	//fnOperateGraph.from(path, zJSON);
 	fnOperateGraph.from(path, zMAYATXT);
 
 	myGraphPolyhedra = zTsGraphPolyhedra(operateGraphObj);
-	
-	myGraphPolyhedra.createGraphMesh();
-
-	//for (int i = 0; i < myGraphPolyhedra.colOfConHulls.size(); i++)
-	//	model.addObject(myGraphPolyhedra.colOfConHulls[i]);
-	
-	model.addObject(*myGraphPolyhedra.graphObj);
-	
-
+	myGraphPolyhedra.snap = snap;
+	myGraphPolyhedra.create();
 
 	// buttons & sliders
 	B = *new ButtonGroup(Alice::vec(50, 450, 0));
@@ -70,12 +68,31 @@ void setup()
 	B.buttons[1].attachToVariable(&drawConHull);
 	B.addButton(&drawGraphMesh, "drawGraphMesh");
 	B.buttons[2].attachToVariable(&drawGraphMesh);
-
+	B.addButton(&drawDual, "drawDual");
+	B.buttons[3].attachToVariable(&drawDual);
+	B.addButton(&increaseSnap, "increaseSnap");
+	B.buttons[4].attachToVariable(&increaseSnap);
+	B.addButton(&decreaseSnap, "decreaseSnap");
+	B.buttons[5].attachToVariable(&decreaseSnap);
+	B.addButton(&drawDualMeshFaces, "drawDualMeshFaces");
+	B.buttons[6].attachToVariable(&drawDualMeshFaces);
 }
 
 void update(int value)
 {
-	operateGraphObj.setShowObject(drawGraph);
+	if (increaseSnap)
+	{
+		snap++;
+		setup();
+		increaseSnap = !increaseSnap;
+	}
+
+	if (decreaseSnap)
+	{
+		snap--;
+		setup();
+		decreaseSnap = !decreaseSnap;
+	}
 }
 
 ////// ---------------------------------------------------- VIEW  ----------------------------------------------------
@@ -84,31 +101,17 @@ void draw()
 	drawGrid(10);
 	backGround(background);
 	
-	glPointSize(6.0);
-
+	if (drawGraph) myGraphPolyhedra.drawGraph(true);
 	if (drawConHull) myGraphPolyhedra.drawConvexHulls();
 	if (drawGraphMesh) myGraphPolyhedra.drawGraphMeshes();
-
-	myGraphPolyhedra.drawDual();
-
-	glColor3f(0, 0, 1);
-	for (zItGraphEdge e(operateGraphObj); !e.end(); e++)
+	if (drawDual)
 	{
-		model.displayUtils.drawTextAtPoint(to_string(e.getId()), e.getCenter());
+		myGraphPolyhedra.drawDual(drawDualMeshFaces, true);
+		for (int i = 0; i < myGraphPolyhedra.tmp1.size(); i++)
+			display.drawLine(myGraphPolyhedra.tmp1[i], myGraphPolyhedra.tmp2[i]);
+	
 	}
 
-	glColor3f(0, 1, 0);
-	for (zItGraphVertex v(operateGraphObj); !v.end(); v++)
-	{
-		model.displayUtils.drawTextAtPoint(to_string(v.getId()), v.getPosition());
-	}
-
-	/*for (auto p : myGraphPolyhedra.tmpP)
-		model.displayUtils.drawPoint(p);*/
-
-	model.draw();
-
-	glPointSize(1.0);
 }
 
 ////// ---------------------------------------------------- CONTROLLER  ----------------------------------------------------

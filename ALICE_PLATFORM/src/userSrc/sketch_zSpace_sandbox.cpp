@@ -19,10 +19,10 @@ using namespace zSpace;
 using namespace std;
 
 /*objects*/
-zObjMesh operateMeshObj;
+zObjGraph operateGraphObj;
 
 /*function sets*/
-zFnMesh fnOperateMesh;
+zFnGraph fnOperateGraph;
 
 /*tool sets*/
 
@@ -31,7 +31,9 @@ zModel model;
 
 /*general variables*/
 double background = 0.2;
-bool drawMesh = true;
+bool drawGraph = true;
+
+string path = "C:/Users/Leo.b/Desktop/graph/test.json";
 
 
 ////////////////////////////////////////////////////////////////////////// MAIN PROGRAM : MVC DESIGN PATTERN  ----------------------------------------------------
@@ -39,31 +41,29 @@ bool drawMesh = true;
 void setup()
 {
 	model = zModel(10000);
-	fnOperateMesh = zFnMesh(operateMeshObj);
+	fnOperateGraph = zFnGraph(operateGraphObj);
+	fnOperateGraph.from(path, zJSON);
+	model.addObject(operateGraphObj);
 
-	zPointArray tmpVerts;
-	zItMeshFace f;
+	zItGraphVertex v(operateGraphObj, 0);
 
-	tmpVerts.push_back(zVector(10, 10, 0));
-	tmpVerts.push_back(zVector(-10, -10, 0));
-	tmpVerts.push_back(zVector(-10, 10, 0));
+	//zIntArray cEdges;
+	//v.getConnectedEdges(cEdges);
 
-	fnOperateMesh.addPolygon(tmpVerts, f);
+	//for (auto e : cEdges) printf("\n %i ", e);
 
-	
 
-	model.addObject(operateMeshObj);
 
 	/*gui setup*/
 	B = *new ButtonGroup(Alice::vec(50, 450, 0));
 
-	B.addButton(&drawMesh, "drawMesh");
-	B.buttons[0].attachToVariable(&drawMesh);
+	B.addButton(&drawGraph, "drawGraph");
+	B.buttons[0].attachToVariable(&drawGraph);
 }
 
 void update(int value)
 {
-	operateMeshObj.setShowObject(drawMesh);
+	operateGraphObj.setShowObject(drawGraph);
 }
 
 ////// ---------------------------------------------------- VIEW  ----------------------------------------------------
@@ -72,6 +72,16 @@ void draw()
 	drawGrid(50);
 	backGround(background);
 	model.draw();
+
+	glColor3f(0, 0, 1);
+	for (zItGraphEdge e(operateGraphObj); !e.end(); e++)
+		model.displayUtils.drawTextAtPoint(to_string(e.getId()), e.getCenter());
+	
+	glColor3f(0, 1, 0);
+	for (zItGraphVertex v(operateGraphObj); !v.end(); v++)
+		model.displayUtils.drawTextAtPoint(to_string(v.getId()), v.getPosition());
+
+	
 }
 
 ////// ---------------------------------------------------- CONTROLLER  ----------------------------------------------------
