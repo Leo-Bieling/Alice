@@ -1,4 +1,3 @@
-
 //#define _MAIN_
 
 #ifdef _MAIN_
@@ -28,6 +27,10 @@ zFnMesh fnOperateMesh;
 
 /*model setup*/
 zModel model;
+
+/*utilities*/
+zUtilsDisplay display;
+
 
 /*general variables*/
 double background = 0.2;

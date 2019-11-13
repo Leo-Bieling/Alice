@@ -1,25 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="Debug|Win32">
-      <Configuration>Debug</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|x64">
       <Configuration>Debug</Configuration>
       <Platform>x64</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="release_igl|Win32">
-      <Configuration>release_igl</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="release_igl|x64">
-      <Configuration>release_igl</Configuration>
-      <Platform>x64</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|Win32">
-      <Configuration>Release</Configuration>
-      <Platform>Win32</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Release|x64">
       <Configuration>Release</Configuration>
@@ -66,42 +50,26 @@
     <ClCompile Include="src\userSrc\sketch_zSpace_acadia_ws_sandbox.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_catmul_clark.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_colored_graph.cpp" />
-    <ClCompile Include="src\userSrc\sketch_zSpace_Dual.cpp" />
+    <ClCompile Include="src\userSrc\sketch_zSpace_dual_graph.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_empty.cpp" />
-    <ClCompile Include="src\userSrc\sketch_zSpace_facadeExtrude_0_1.cpp" />
-    <ClCompile Include="src\userSrc\sketch_zSpace_facadeExtrude_0_2.cpp" />
-    <ClCompile Include="src\userSrc\sketch_zSpace_facadeExtrude_0_3.cpp" />
-    <ClCompile Include="src\userSrc\sketch_zSpace_facadeExtrude_0_4.cpp" />
-    <ClCompile Include="src\userSrc\sketch_zSpace_facadeExtrude_0_5.cpp" />
-    <ClCompile Include="src\userSrc\sketch_zSpace_facadeExtrude_eigen.cpp" />
+    <ClCompile Include="src\userSrc\sketch_zSpace_facade_extrude_0_5.cpp" />
+    <ClCompile Include="src\userSrc\sketch_zSpace_facade_extrude_eigen.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_FDM_Mesh.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_frep_tester.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_graph_to_plan.cpp" />
-    <ClCompile Include="src\userSrc\sketch_zSpace_graph_frep_0_1.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_graph_frep_0_2.cpp" />
-    <ClCompile Include="src\userSrc\sketch_zSpace_graph_to_polyhedra_0_1.cpp" />
-    <ClCompile Include="src\userSrc\sketch_zSpace_graph_to_polyhedra_0_2.cpp" />
-    <ClCompile Include="src\userSrc\sketch_zSpace_graph_to_polyhedra_0_3.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_graph_to_polyhedra_0_4.cpp" />
+    <ClCompile Include="src\userSrc\sketch_zSpace_graph_to_polyhedra_dnipro_testbed_0_1.cpp" />
+    <ClCompile Include="src\userSrc\sketch_zSpace_graph_to_polyhedra_dnipro_testbed_0_2.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_honduras_perlinNoise.cpp" />
-    <ClCompile Include="src\userSrc\sketch_zSpace_honduras_slope_traversal_0_2.cpp" />
-    <ClCompile Include="src\userSrc\sketch_zSpace_honduras_slope_traversal_0_3.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_honduras_slope_traversal_0_4.cpp" />
-    <ClCompile Include="src\userSrc\sketch_zSpace_laplacian_eigen_0_1.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_laplacian_eigen_0_2.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_mesh_coloring.cpp" />
-    <ClCompile Include="src\userSrc\sketch_zSpace_polytopal_0_1.cpp" />
-    <ClCompile Include="src\userSrc\sketch_zSpace_polytopal_0_2.cpp" />
-    <ClCompile Include="src\userSrc\sketch_zSpace_polytopal_0_3.cpp" />
-    <ClCompile Include="src\userSrc\sketch_zSpace_polytopal_0_4.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_polytopal_0_5.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_Robot_NACHI.cpp" />
-    <ClCompile Include="src\userSrc\sketch_zSpace_RREF.cpp" />
-    <ClCompile Include="src\userSrc\sketch_zSpace_RREF_simple.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_sandbox.cpp" />
-    <ClCompile Include="src\userSrc\sketch_zSpace_shortestPath.cpp" />
+    <ClCompile Include="src\userSrc\sketch_zSpace_shortest_path.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_smoothing.cpp" />
-    <ClCompile Include="src\userSrc\sketch_zSpace_testHOnly.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_TNA_Stairs.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_transformation.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_WalkAnimate.cpp" />
@@ -113,35 +81,12 @@
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v141</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release_igl|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v141</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v141</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <UseIntelMKL>Parallel</UseIntelMKL>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release_igl|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v141</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -151,19 +96,7 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='release_igl|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='release_igl|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
@@ -173,22 +106,10 @@
   <PropertyGroup>
     <_ProjectFileVersion>11.0.61030.0</_ProjectFileVersion>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(Configuration)\</IntDir>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
     <GenerateManifest>false</GenerateManifest>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(Configuration)\</IntDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release_igl|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
@@ -199,26 +120,6 @@
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release_igl|x64'">
-    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(Platform)\$(Configuration)\</IntDir>
-    <GenerateManifest>true</GenerateManifest>
-    <EmbedManifest>true</EmbedManifest>
-  </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <MinimalRebuild>true</MinimalRebuild>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-    </ClCompile>
-    <Link>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <TargetMachine>MachineX86</TargetMachine>
-    </Link>
-  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
       <TargetEnvironment>X64</TargetEnvironment>
@@ -242,38 +143,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <TargetMachine>MachineX64</TargetMachine>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <ClCompile>
-      <Optimization>MaxSpeed</Optimization>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-    </ClCompile>
-    <Link>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <OptimizeReferences>true</OptimizeReferences>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <TargetMachine>MachineX86</TargetMachine>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release_igl|Win32'">
-    <ClCompile>
-      <Optimization>MaxSpeed</Optimization>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-    </ClCompile>
-    <Link>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <OptimizeReferences>true</OptimizeReferences>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <TargetMachine>MachineX86</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -312,37 +181,6 @@
       <StackReserveSize>8000000</StackReserveSize>
       <HeapReserveSize>
       </HeapReserveSize>
-    </Link>
-    <Xdcmake>
-      <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
-    </Xdcmake>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release_igl|x64'">
-    <Midl>
-      <TargetEnvironment>X64</TargetEnvironment>
-    </Midl>
-    <ClCompile>
-      <Optimization>MaxSpeed</Optimization>
-      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <OmitFramePointers>true</OmitFramePointers>
-      <WholeProgramOptimization>true</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>src/Eigen;src/freeglut;src/alice/;src/glew/include;src/;src/userSrc;include;src/external/AntTweakBar/include;src/external/AntTweakBar/src;src/external/glew/include;src/externa/\glew/src;src/external/glfw/src;src/external/glfw/include;src\external\embree\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <FloatingPointModel>Fast</FloatingPointModel>
-      <WarningLevel>TurnOffAllWarnings</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-    </ClCompile>
-    <Link>
-      <AdditionalDependencies>glew32s.lib;ALICE_DLL.lib;opengl32.lib;glfw3.lib;embree.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)EXE\$(ProjectName).exe</OutputFile>
-      <AdditionalLibraryDirectories>src/;src/glew/lib;src/alice/;src/freeglut;src\external\AntTweakBar\lib;src\external\glfw\lib\x64;src\external\glew\lib;src\external\embree\include\embree2;src\external\embree\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <OptimizeReferences>true</OptimizeReferences>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <Xdcmake>
       <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
