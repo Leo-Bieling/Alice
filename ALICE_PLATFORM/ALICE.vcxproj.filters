@@ -137,9 +137,6 @@
     <ClCompile Include="src\userSrc\sketch_zSpace_catmul_clark.cpp">
       <Filter>sketches</Filter>
     </ClCompile>
-    <ClCompile Include="src\userSrc\sketch_zSpace_sandbox.cpp">
-      <Filter>sketches</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\ZSPACE\cpp\depends\alglib\cpp\src\alglibinternal.cpp">
       <Filter>depends\alglib</Filter>
     </ClCompile>
@@ -198,6 +195,15 @@
       <Filter>sketches</Filter>
     </ClCompile>
     <ClCompile Include="src\userSrc\sketch_zSpace_graph_to_polyhedra_dnipro_testbed_0_2.cpp">
+      <Filter>sketches</Filter>
+    </ClCompile>
+    <ClCompile Include="src\userSrc\sketch_zSpace_polytopal_VB.cpp">
+      <Filter>sketches</Filter>
+    </ClCompile>
+    <ClCompile Include="src\userSrc\sketch_zSpace_sandbox_1.cpp">
+      <Filter>sketches</Filter>
+    </ClCompile>
+    <ClCompile Include="src\userSrc\sketch_zSpace_sandbox_2.cpp">
       <Filter>sketches</Filter>
     </ClCompile>
   </ItemGroup>

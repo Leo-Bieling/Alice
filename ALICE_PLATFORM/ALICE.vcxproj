@@ -65,9 +65,11 @@
     <ClCompile Include="src\userSrc\sketch_zSpace_honduras_slope_traversal_0_4.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_laplacian_eigen_0_2.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_mesh_coloring.cpp" />
+    <ClCompile Include="src\userSrc\sketch_zSpace_polytopal_VB.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_polytopal_0_5.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_Robot_NACHI.cpp" />
-    <ClCompile Include="src\userSrc\sketch_zSpace_sandbox.cpp" />
+    <ClCompile Include="src\userSrc\sketch_zSpace_sandbox_1.cpp" />
+    <ClCompile Include="src\userSrc\sketch_zSpace_sandbox_2.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_shortest_path.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_smoothing.cpp" />
     <ClCompile Include="src\userSrc\sketch_zSpace_TNA_Stairs.cpp" />
